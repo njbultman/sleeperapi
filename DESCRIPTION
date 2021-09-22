@@ -1,0 +1,13 @@
+Package: sleepr
+Type: Package
+Title: Helper Functions Around Sleeper API.
+Version: 0.1.0
+Author: Nick Bultman
+Maintainer: Nick Bultman <njbultman74@gmail.com>
+Description: Helper Functions Around Sleeper API.
+License: MIT License
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat
