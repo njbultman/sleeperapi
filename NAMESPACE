@@ -2,5 +2,5 @@
 
 export(get_league_users_data)
 importFrom(httr,GET)
-importFrom(jsonlite,content)
+importFrom(httr,content)
 importFrom(jsonlite,fromJSON)
