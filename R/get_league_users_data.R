@@ -6,8 +6,8 @@
 #' @return Returns a data frame containing information about the users in the league.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2021
 #' @keywords league users
-#' @importFrom httr GET
-#' @importFrom jsonlite content fromJSON
+#' @importFrom httr GET content
+#' @importFrom jsonlite fromJSON
 #' @export
 #' @examples
 #' get_league_users_data(688281863499907072)
