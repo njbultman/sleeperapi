@@ -2,6 +2,7 @@
 
 export(get_league_users_data)
 export(get_roster_data)
+export(get_user_data)
 importFrom(httr,GET)
 importFrom(httr,content)
 importFrom(jsonlite,fromJSON)
