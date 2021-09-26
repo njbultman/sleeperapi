@@ -11,7 +11,7 @@ plot_wl_nfp(league_id, title = "", subtitle = "")
 
 \item{title}{Optional title of the plot (string)}
 
-\item{subtitle}{= Optional subtitle of the plot (string)}
+\item{subtitle}{Optional subtitle of the plot (string)}
 }
 \value{
 Returns a plot showing net wins and losses colored by fantasy point differentials.
