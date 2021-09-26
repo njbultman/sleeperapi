@@ -3,7 +3,7 @@
 #' Given a user ID, grab the data concerning that particular user. This includes username, user ID, display 
 #' name, and more.
 #'
-#' @return Returns a data frame containing information about the user.
+#' @return Returns a list containing information about the user.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2021
 #' @keywords user users
 #' @importFrom httr GET content
