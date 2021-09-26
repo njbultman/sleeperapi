@@ -9,7 +9,7 @@
 #' @keywords standings plot wins losses points
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr bind_cols
+#' @import dplyr bind_cols
 #' @import ggplot2
 #' @export
 #' @examples
