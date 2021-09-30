@@ -2,7 +2,7 @@
 #'
 #' Given a league ID, plot the standings so far for the league. This includes wins compared to losses and 
 #' fantasy point differentials. Note that this plot was created specifically with a NFL fantasy league, so
-#' results may vary when Sleeper decides to incorporate other fantasy sport data.  
+#' results may vary when Sleeper decides to incorporate other fantasy sports data.  
 #'
 #' @return Returns a plot showing net wins and losses colored by fantasy point differentials.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2021
@@ -28,28 +28,21 @@ plot_wl_nfp <- function(league_id, title = "", subtitle = "") {
   full_data <- league_users %>%
     select(user_id, display_name) %>%
     left_join(team_stats, by = c("user_id" = "owner_id")) %>%
-    filter(is.na(wins) == FALSE)
-  full_data <- full_data %>%
-    select(display_name, fpts, fpts_against, wins, losses) %>%
+    filter(is.na(wins) == FALSE) %>%
     mutate(fpts_net = fpts - fpts_against,
            wins_losses_net = wins - losses,
            ordering = ifelse(wins_losses_net > 0, fpts_net * wins_losses_net, ifelse(wins_losses_net < 0, fpts_net * -wins_losses_net, fpts_net)))
-  quantile_25_fpts_net <- quantile(full_data$fpts_net, probs = 0.25)
-  quantile_50_fpts_net <- quantile(full_data$fpts_net, probs = 0.5)
-  quantile_75_fpts_net <- quantile(full_data$fpts_net, probs = 0.75)
   p <- ggplot(full_data, aes(x = reorder(display_name, -ordering), y = wins_losses_net, fill = fpts_net)) +
     geom_col(color = "black", position = "dodge") +
     geom_text(aes(label = fpts_net), position = position_stack(vjust = 0.5)) +
     ggtitle(title,
             subtitle = subtitle) +
     labs(x = "Name", y = "Net Wins & Losses", fill = "Net FPTS") +
-    scale_fill_gradientn(colours = c("red", "yellow", "green"), 
-                         breaks = c(quantile_25_fpts_net, quantile_50_fpts_net, quantile_75_fpts_net), 
-                         limits=c(min(full_data$fpts_net), max(full_data$fpts_net))) +
     theme(plot.title = element_text(hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(hjust = 0.5),
           axis.title = element_text(face = "bold"),
           legend.position = "none",
-          axis.text.x = element_text(angle = 45))
+          axis.text.x = element_text(angle = 45)) +
+    scale_fill_continuous(low = "red", high = "green")
   return(p)
 }

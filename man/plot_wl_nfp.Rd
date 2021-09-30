@@ -19,7 +19,7 @@ Returns a plot showing net wins and losses colored by fantasy point differential
 \description{
 Given a league ID, plot the standings so far for the league. This includes wins compared to losses and 
 fantasy point differentials. Note that this plot was created specifically with a NFL fantasy league, so
-results may vary when Sleeper decides to incorporate other fantasy sport data.
+results may vary when Sleeper decides to incorporate other fantasy sports data.
 }
 \examples{
 plot_wl_nfp(688281863499907072, "Net Wins/Losses (Wins - Losses), Colored by FPTS Differential (Points For - Points Against)")
