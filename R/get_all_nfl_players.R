@@ -3,7 +3,7 @@
 #' Gather all information concerning NFL players. Per Sleeper, this be called once per day at most given
 #' the amount of data that it returns (5MB).
 #'
-#' @return Returns a dataframe containing information about the NFL players.
+#' @return Returns a list containing information about the NFL players.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, December 2021
 #' @keywords nfl players
 #' @importFrom httr GET content
