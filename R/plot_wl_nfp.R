@@ -20,8 +20,8 @@
 #' @param subtitle Optional subtitle of the plot (string)
 #'
 plot_wl_nfp <- function(league_id, title = "", subtitle = "") {
-  rosters <- get_roster_data(league_id)
-  league_users <- get_league_users_data(league_id)
+  rosters <- get_rosters(league_id)
+  league_users <- get_league_users(league_id)
   team_stats <- rosters$settings %>%
     select(wins, ties, losses, fpts, fpts_against, division) %>%
     bind_cols(data.frame(owner_id = rosters$owner_id))
