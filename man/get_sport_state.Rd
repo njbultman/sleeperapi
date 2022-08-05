@@ -7,7 +7,7 @@
 get_sport_state(sport)
 }
 \arguments{
-\item{sport}{Sport that you would like to query (nfl, nba, lcs, etc.) (string)}
+\item{sport}{Sport that you would like to query (nfl, nba, lcs, etc.) (character)}
 }
 \value{
 Returns a list containing information about the sport state.

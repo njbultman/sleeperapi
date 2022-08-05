@@ -1,7 +1,7 @@
 Package: sleepr
 Type: Package
 Title: Helper Functions Around Sleeper API.
-Version: 0.1.0
+Version: 1.0.0
 Author: Nick Bultman
 Maintainer: Nick Bultman <njbultman74@gmail.com>
 Description: Helper Functions Around Sleeper API.

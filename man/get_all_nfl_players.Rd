@@ -4,17 +4,30 @@
 \alias{get_all_nfl_players}
 \title{Gather NFL Player Data}
 \usage{
-get_all_nfl_players()
+get_all_nfl_players(clean = FALSE)
+}
+\arguments{
+\item{clean}{Specifies whether a data frame or the default list will be returned (logical)}
 }
 \value{
-Returns a list containing information about the NFL players.
+Returns a list or data frame containing information about the NFL players.
 }
 \description{
-Gather all information concerning NFL players. Per Sleeper, this be called once per day at most given
-the amount of data that it returns (5MB).
+Gather all information concerning NFL players in list or data frame. Per Sleeper, this should be called once 
+per day at most given the amount of data that it returns. By modifying the 'clean' parameter, either a
+data frame will be returned or a list. When 'clean' is TRUE, a data frame will be returned. Note that while
+most data is returned for the data frame, metadata will not be due to its dynamic nature. For example, 
+metadata can be data frames on their own, so attempting to put them in a single data frame is not feasible. 
+Moreover, some data in an observation is concatenated together to ensure each piece of an observation fits 
+into its appropriate column within the observation of the data frame. For example, a player can have multiple
+positions listed, so these would be concatenated together in a single column for that observation. If either 
+of these pieces will be problematic for you, it is recommended to keep 'clean' set to FALSE and parse the 
+default list as you see fit. Lastly, note that when 'clean' is TRUE, the transformation process to go from
+a list to a data frame does take some time, so do not worry if the function is taking a while to run.
 }
 \examples{
-get_all_nfl_players()
+get_all_nfl_players(clean = FALSE)
+get_all_nfl_players(clean = TRUE)
 
 }
 \author{

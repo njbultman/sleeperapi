@@ -7,20 +7,20 @@
 get_trending_players(sport, type, lookback_hours = 24, limit = 25)
 }
 \arguments{
-\item{sport}{Sport that you would like to query (nfl, nba, etc.) (string)}
+\item{sport}{Sport that you would like to query (nfl, nba, etc.) (character)}
 
-\item{type}{Either "add" or "drop"}
+\item{type}{Either "add" or "drop" (character)}
 
-\item{lookback_hours}{Number of hours to look back (integer). Default is 24}
+\item{lookback_hours}{Number of hours to look back (numeric). Default is 24}
 
-\item{limit}{Number of results you would like (integer). Default is 25}
+\item{limit}{Number of results you would like (numeric). Default is 25}
 }
 \value{
-Returns a dataframe containing information (player ID and count) about the trending players.
+Returns a data frame containing information (player ID and count) about the trending players.
 }
 \description{
 Given a sport and type (add or drop), return the top trending players for that selection. More specifically, the player
-ID and count are returned in a dataframe, allowing one to see which players have been added/dropped the most
+ID and count are returned in a data frame, allowing one to see which players have been added/dropped the most
 given the particular lookback period (default lookback period of one day).
 }
 \examples{
