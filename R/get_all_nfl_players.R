@@ -17,10 +17,11 @@
 #' @keywords nfl players
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
+#' @importFrom plyr rbind.fill
 #' @export
 #' @examples
-#' get_all_nfl_players(clean = FALSE)
-#' get_all_nfl_players(clean = TRUE)
+#' \dontrun{get_all_nfl_players(clean = FALSE)}
+#' \dontrun{get_all_nfl_players(clean = TRUE)}
 #' 
 #' @param clean Specifies whether a data frame or the default list will be returned (logical)
 #'

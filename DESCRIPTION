@@ -1,13 +1,14 @@
-Package: sleepr
+Package: sleeperapi
 Type: Package
-Title: Helper Functions Around Sleeper API.
+Title: Wrapper Functions Around Sleeper API
 Version: 1.0.0
 Author: Nick Bultman
 Maintainer: Nick Bultman <njbultman74@gmail.com>
-Description: Helper Functions Around Sleeper API.
-License: MIT License
+Description: Interacting with APIs can be tricky for those that do not do it often. For those in this situation wishing to interact with the Sleeper API, this package offers wrapper functions around the available API calls to make it easier to interact with the API.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+Imports: httr, jsonlite, plyr
 Suggests: 
     testthat

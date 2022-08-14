@@ -26,8 +26,8 @@ default list as you see fit. Lastly, note that when 'clean' is TRUE, the transfo
 a list to a data frame does take some time, so do not worry if the function is taking a while to run.
 }
 \examples{
-get_all_nfl_players(clean = FALSE)
-get_all_nfl_players(clean = TRUE)
+\dontrun{get_all_nfl_players(clean = FALSE)}
+\dontrun{get_all_nfl_players(clean = TRUE)}
 
 }
 \author{

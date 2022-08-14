@@ -1,4 +1,4 @@
 library(testthat)
-library(sleepr)
+library(sleeperapi)
 
-test_check("sleepr")
+test_check("sleeperapi")
