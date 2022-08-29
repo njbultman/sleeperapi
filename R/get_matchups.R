@@ -17,8 +17,8 @@
 #' @param week Matchup week (numeric)
 #'
 get_matchups <- function(league_id, week) {
-  # Check class of week parameter
-  if(class(week) != "numeric") {
+  # Check class of week parameter to see if numeric
+  if(!is.numeric(week)) {
     # If not numeric, inform user and halt function
     stop("week paramater must be numeric")
   } else {
@@ -26,7 +26,7 @@ get_matchups <- function(league_id, week) {
     x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/matchups/", week)), as = "text"))
   }
   # Check if returned object is of class list
-  if(class(x) == "list") {
+  if(inherits(x, "list")) {
     # If list, inform user and return nothing
     message("No data found. Was the week entered a valid week in terms of your season settings?")
     # If not list, check if NULL

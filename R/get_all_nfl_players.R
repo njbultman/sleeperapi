@@ -26,7 +26,9 @@
 #' @param clean Specifies whether a data frame or the default list will be returned (logical)
 #'
 get_all_nfl_players <- function(clean = FALSE) {
-  if(class(clean) != "logical") {
+  # Check if clean parameter is logical
+  if(!is.logical(clean)) {
+    # If not logical, inform user and halt the function
     stop("Parameter 'clean' must be logical (TRUE or FALSE)")
   }
   # Send request to API

@@ -1,7 +1,7 @@
 # Unit tests for get_loser_playoff_bracket function
 
 # Test 1: Valid league ID returns a data frame
-test_that("Valid league ID returns a dataframe", {
+test_that("Valid league ID returns a data frame", {
   expect_equal(class(get_loser_playoff_bracket(688281863499907072)), "data.frame")
 })
 

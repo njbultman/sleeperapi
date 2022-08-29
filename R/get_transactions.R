@@ -17,14 +17,14 @@
 #'
 get_transactions <- function(league_id, round) {
   # Check if class of round parameter is numeric
-  if(class(round) != "numeric") {
+  if(!is.numeric(round)) {
     # If not numeric, inform user and halt function
     stop("round parameter must be of type numeric")
   }
   # Query results from API given league ID and round specified
   x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/transactions/", round)), as = "text"))
   # Check if returned object is a list
-  if(class(x) == "list") {
+  if(inherits(x, "list")) {
     # If returned object is a list, inform user and return nothing
     message("No data found. Were the league ID and round entered correctly?")
   } else {

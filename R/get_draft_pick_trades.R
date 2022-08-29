@@ -16,11 +16,11 @@
 get_draft_pick_trades <- function(draft_id) {
   # Send request to API given draft ID specified
   x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/draft/", draft_id, "/traded_picks")), as = "text"))
-  # Check class of data returned from request
-  if(class(x) == "list") {
+  # Check if class of data returned from request is list
+  if(is.list(x)) {
     # If class is list, it is an empty list and no data was found - inform user and do not return anything
     message("No data found - were there any trades in the draft?")
-  } else if(class(x) == "NULL") {
+  } else if(is.null(x)) {
     # If class is NULL, invalid draft ID was entered - inform user and do not return anything
     message("No data found - was the draft ID entered correctly?")
     } else {

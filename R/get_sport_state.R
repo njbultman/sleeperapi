@@ -15,7 +15,7 @@
 #'
 get_sport_state <- function(sport) {
   # Check if class of the sport parameter is of type character
-  if(class(sport) != "character") {
+  if(!is.character(sport)) {
     # If type is not character, inform user and halt function
     stop("sport parameter must be of type character")
   } else {

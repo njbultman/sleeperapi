@@ -17,8 +17,8 @@
 get_league_users <- function(league_id) {
   # Send request to API given league ID specified
   x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/users")), as = "text"))
-  # Check class of data returned from request
-  if(class(x) == "list") {
+  # Check if class of data returned from request is list
+  if(inherits(x, "list")) {
     # If class is list, it is an empty list and no data was found - inform user and do not return anything
     message("No data found - was the league ID entered correctly?")
   } else {

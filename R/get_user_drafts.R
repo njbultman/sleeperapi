@@ -17,11 +17,11 @@
 #'
 get_user_drafts <- function(user_id, sport, season) {
   # Check if sport parameter is of type character
-  if(class(sport) != "character") {
+  if(!is.character(sport)) {
     # If type character, inform user and stop function
     stop("sport parameter must be of type character")
   # Check if season parameter is of type numeric
-  } else if(class(season) != "numeric") {
+  } else if(!is.numeric(season)) {
     # If type numeric, inform user and stop function
     stop("season parameter must be of type numeric")
   }

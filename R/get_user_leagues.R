@@ -19,7 +19,7 @@
 #'
 get_user_leagues <- function(user_id, sport = "nfl", season = substr(Sys.Date(), start = 1, stop = 4)) {
   # Check to see if sport parameter is of type character
-  if(class(sport) != "character") {
+  if(!is.character(sport)) {
     # If not character, stop function and inform user
     stop("sport parameter must be of type character")
   }

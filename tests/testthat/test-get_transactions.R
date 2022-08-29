@@ -2,7 +2,7 @@
 
 # Test 1: Valid league ID and round return a data frame
 test_that("returns a data frame", {
-  expect_equal(class(get_transactions(688281863499907072, 2)), "data.frame")
+  expect_equal(inherits(get_transactions(688281863499907072, 2), "data.frame"), TRUE)
 })
 
 # Test 2: Invalid round type throws error

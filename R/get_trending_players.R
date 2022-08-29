@@ -20,7 +20,7 @@
 #'
 get_trending_players <- function(sport, type, lookback_hours = 24, limit = 25) {
   # Check if sport parameter is of type character
-  if(class(sport) != "character") {
+  if(!is.character(sport)) {
     # If sport parameter is of type character, message user
     stop("sport parameter should be of character type")
     # Check if type parameter is "add" or "drop"
@@ -28,11 +28,11 @@ get_trending_players <- function(sport, type, lookback_hours = 24, limit = 25) {
     # If not "add" or "drop" inform user
     stop("type parameter should be 'add' or 'drop'")
     # Check if lookback_hours parameter is of type numeric
-  } else if(class(lookback_hours) != "numeric") {
+  } else if(!is.numeric(lookback_hours)) {
     # If not numeric, inform user
     stop("lookback_hours parameter should be of numeric type")
     # Check if limit parameter is of type numeric
-  } else if (class(limit) != "numeric") {
+  } else if (!is.numeric(limit)) {
     # If not numeric, inform user
     stop("limit parameter should be of numeric type")
   }
