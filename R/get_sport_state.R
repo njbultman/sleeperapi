@@ -20,7 +20,7 @@ get_sport_state <- function(sport) {
     stop("sport parameter must be of type character")
   } else {
     # If type is character, execute query given character object specified for sport parameter
-    x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/state/", sport)), as = "text"))
+    x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/state/", sport)), as = "text"))
   }
   # Check if returned object is NULL
   if(is.null(x)) {

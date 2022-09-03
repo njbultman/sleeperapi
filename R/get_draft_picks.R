@@ -15,7 +15,7 @@
 #'
 get_draft_picks <- function(draft_id) {
   # Send request to API given draft ID specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/draft/", draft_id, "/picks")), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/draft/", draft_id, "/picks")), as = "text"))
   # Check class of data returned from request
   if(is.null(x)) {
     # If NULL is returned, no data was found - inform user and do not return anything

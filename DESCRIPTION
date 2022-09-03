@@ -1,13 +1,13 @@
 Package: sleeperapi
 Type: Package
 Title: Wrapper Functions Around Sleeper API
-Version: 1.0.0
+Version: 1.0.1
 Author: Nick Bultman
 Maintainer: Nick Bultman <njbultman74@gmail.com>
-Description: Interacting with an API can be tricky for those that do not do it often. For those in this situation wishing to interact with the Sleeper API, this package offers wrapper functions around the available API calls to make it easier.
+Description: For those wishing to interact with the Sleeper (Fantasy Sports) API without looking too much into its documentation, this package offers wrapper functions around the available API calls to make it easier.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 Imports: httr, jsonlite, plyr
 Suggests: 
-    testthat
+    testthat (>= 2.0.0)

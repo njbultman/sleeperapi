@@ -24,7 +24,7 @@ get_user_leagues <- function(user_id, sport = "nfl", season = substr(Sys.Date(),
     stop("sport parameter must be of type character")
   }
   # Execute query to API given inputs specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/user/", user_id, "/leagues/", sport, "/", season)), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/user/", user_id, "/leagues/", sport, "/", season)), as = "text"))
   # Check if length of returned object is zero
   if(length(x) == 0) {
     # If length is zero, inform user and return nothing

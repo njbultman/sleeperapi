@@ -15,7 +15,7 @@
 #'
 get_draft <- function(draft_id) {
   # Execute query to API given draft ID specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/draft/", draft_id)), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/draft/", draft_id)), as = "text"))
   # Check if returned object is NULL
   if(is.null(x)) {
     # If NULL, inform user and return nothing

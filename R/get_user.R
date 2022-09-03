@@ -16,7 +16,7 @@
 #'
 get_user <- function(user_id) {
   # Execute query to API given user ID specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/user/", user_id)), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/user/", user_id)), as = "text"))
   # Check if returned object is NULL
   if(is.null(x)) {
     # If NULL, inform user and return nothing

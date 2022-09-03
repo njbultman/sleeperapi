@@ -15,7 +15,7 @@
 #'
 get_traded_picks <- function(league_id) {
   # Execute query to API given league ID specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/traded_picks")), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/traded_picks")), as = "text"))
   # Check to see if returned object has length zero
   if(length(x) == 0) {
     # If length is zero, inform user but still return empty list

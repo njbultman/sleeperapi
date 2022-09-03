@@ -21,7 +21,7 @@ get_avatar_picture <- function(avatar_id, type = "full") {
   # If the type is "full" then get full PNG file
   if(type == "full") {
     # Get picture from API
-    download.file(paste0("https://sleepercdn.com/avatars/", avatar_id), destfile = temp_fil, quiet = TRUE)
+    utils::download.file(paste0("https://sleepercdn.com/avatars/", avatar_id), destfile = temp_fil, quiet = TRUE)
     # Show file
     file.show(temp_fil)
     # Remove the file from the temporary path

@@ -37,7 +37,7 @@ get_trending_players <- function(sport, type, lookback_hours = 24, limit = 25) {
     stop("limit parameter should be of numeric type")
   }
   # Execute query to API given inputs specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/players/", sport, "/trending/", type, "?lookback_hours=", lookback_hours, "&limit=", limit)), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/players/", sport, "/trending/", type, "?lookback_hours=", lookback_hours, "&limit=", limit)), as = "text"))
   # Check if length of returned object is zero
   if(length(x) == 0) {
     # If length is zero, inform user and return nothing

@@ -32,7 +32,7 @@ get_all_nfl_players <- function(clean = FALSE) {
     stop("Parameter 'clean' must be logical (TRUE or FALSE)")
   }
   # Send request to API
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/players/nfl")), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/players/nfl")), as = "text"))
   # Check if parameter 'clean' is FALSE. If so, return default list
   if(clean == FALSE) {
     return(x)
@@ -60,7 +60,7 @@ get_all_nfl_players <- function(clean = FALSE) {
     # Convert NULL to NA
     list[sapply(list, is.null)] <- NA
     # Bind observation in loop to final data frame
-    df <- rbind.fill(df, as.data.frame(list, stringsAsFactors = FALSE))
+    df <- plyr::rbind.fill(df, as.data.frame(list, stringsAsFactors = FALSE))
   }
   # Return final data frame
   return(df)

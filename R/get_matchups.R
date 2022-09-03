@@ -23,7 +23,7 @@ get_matchups <- function(league_id, week) {
     stop("week paramater must be numeric")
   } else {
     # If numeric, execute query to API given inputs specified
-    x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/matchups/", week)), as = "text"))
+    x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/matchups/", week)), as = "text"))
   }
   # Check if returned object is of class list
   if(inherits(x, "list")) {

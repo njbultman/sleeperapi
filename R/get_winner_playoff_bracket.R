@@ -15,7 +15,7 @@
 #'
 get_winner_playoff_bracket <- function(league_id) {
   # Execute query to API given league ID specified
-  x <- fromJSON(content(GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/winners_bracket")), as = "text"))
+  x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/league/", league_id, "/winners_bracket")), as = "text"))
   # Check if returned object is NULL
   if(is.null(x)) {
     # If NULL, inform the user and return nothing
