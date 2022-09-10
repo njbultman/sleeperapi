@@ -17,7 +17,7 @@ Given a league ID, grab the data concerning each user. This includes information
 display name, avatar, if they are an owner, if they are a bot, and more.
 }
 \examples{
-get_league_users(688281863499907072)
+\dontrun{get_league_users(688281863499907072)}
 
 }
 \author{

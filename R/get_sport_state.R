@@ -9,7 +9,7 @@
 #' @importFrom jsonlite fromJSON
 #' @export
 #' @examples
-#' get_sport_state("nfl")
+#' \dontrun{get_sport_state("nfl")}
 #'
 #' @param sport Sport that you would like to query (nfl, nba, lcs, etc.) (character)
 #'

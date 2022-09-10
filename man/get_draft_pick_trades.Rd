@@ -16,7 +16,7 @@ Returns a data frame containing information about the draft pick trade(s).
 Given a draft ID, gather draft pick trades for that draft.
 }
 \examples{
-get_draft_pick_trades(688281872463106048)
+\dontrun{get_draft_pick_trades(688281872463106048)}
 
 }
 \author{

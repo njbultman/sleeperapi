@@ -20,7 +20,7 @@ Returns a data frame containing information about the draft(s).
 Given a user ID, sport abbreviation, and season number, gather draft information for that selection.
 }
 \examples{
-get_user_drafts(688556535013502976, "nfl", 2021)
+\dontrun{get_user_drafts(688556535013502976, "nfl", 2021)}
 
 }
 \author{

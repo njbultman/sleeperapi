@@ -19,7 +19,7 @@ Given a league ID and round, grab the transaction data concerning that particula
 This includes adds or drops, whether it was a free agent or a waiver, notes, and more.
 }
 \examples{
-get_transactions(688281863499907072, 2)
+\dontrun{get_transactions(688281863499907072, 2)}
 
 }
 \author{

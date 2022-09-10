@@ -1,7 +1,7 @@
 Package: sleeperapi
 Type: Package
 Title: Wrapper Functions Around Sleeper API
-Version: 1.0.1
+Version: 1.0.2
 Author: Nick Bultman
 Maintainer: Nick Bultman <njbultman74@gmail.com>
 Description: For those wishing to interact with the Sleeper (Fantasy Sports) API without looking too much into its documentation, this package offers wrapper functions around the available API calls to make it easier.

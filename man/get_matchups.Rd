@@ -19,8 +19,8 @@ Given a league ID and week number, grab the matchup data, including player point
 starting rosters, and more.
 }
 \examples{
-get_matchups(688281863499907072, 2)
-get_matchups("688281863499907072", 1)
+\dontrun{get_matchups(688281863499907072, 2)}
+\dontrun{get_matchups("688281863499907072", 1)}
 
 }
 \author{

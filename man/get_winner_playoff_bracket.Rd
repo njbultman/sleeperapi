@@ -16,7 +16,7 @@ Returns a data frame containing playoff information for the winner bracket.
 Given a league ID, get the winner playoff bracket for the league.
 }
 \examples{
-get_winner_playoff_bracket(688281863499907072)
+\dontrun{get_winner_playoff_bracket(688281863499907072)}
 
 }
 \author{

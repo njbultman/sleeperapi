@@ -16,7 +16,7 @@ Returns a list containing trades.
 Given a league ID, grab the trades that have occured.
 }
 \examples{
-get_traded_picks(688281863499907072)
+\dontrun{get_traded_picks(688281863499907072)}
 
 }
 \author{

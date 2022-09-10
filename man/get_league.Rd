@@ -17,7 +17,7 @@ Given a league ID, grab the data for that league. Includes roster positions, sea
 season, and more.
 }
 \examples{
-get_league(688281863499907072)
+\dontrun{get_league(688281863499907072)}
 
 }
 \author{

@@ -16,7 +16,7 @@ Returns a list containing information about the sport state.
 Given a sport abbreviation (NFL, NBA, etc.), return information about the current sport state.
 }
 \examples{
-get_sport_state("nfl")
+\dontrun{get_sport_state("nfl")}
 
 }
 \author{

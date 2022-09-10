@@ -17,7 +17,7 @@ Given a league ID, grab the data concerning each roster in that league. This inc
 roster wins, losses, ties, fantasy points, and more.
 }
 \examples{
-get_rosters(688281863499907072)
+\dontrun{get_rosters(688281863499907072)}
 
 }
 \author{

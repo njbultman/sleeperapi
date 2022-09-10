@@ -16,7 +16,7 @@ Returns a list containing information about the draft.
 Given a draft ID, gather draft information for selection.
 }
 \examples{
-get_draft(688281872463106048)
+\dontrun{get_draft(688281872463106048)}
 
 }
 \author{

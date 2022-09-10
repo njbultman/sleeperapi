@@ -16,7 +16,7 @@ Returns a data frame containing information about the draft picks.
 Given a draft ID, gather draft picks (along with other metadata concerning the picks).
 }
 \examples{
-get_draft_picks(688281872463106048)
+\dontrun{get_draft_picks(688281872463106048)}
 
 }
 \author{

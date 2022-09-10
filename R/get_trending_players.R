@@ -11,7 +11,7 @@
 #' @importFrom jsonlite fromJSON
 #' @export
 #' @examples
-#' get_trending_players("nfl", "add", 24, 25)
+#' \dontrun{get_trending_players("nfl", "add", 24, 25)}
 #'
 #' @param sport Sport that you would like to query (nfl, nba, etc.) (character)
 #' @param type Either "add" or "drop" (character)

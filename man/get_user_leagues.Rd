@@ -25,8 +25,8 @@ Given a user ID and optional sport and season, grab the league data concerning t
 This includes total rosters, scoring settings, roster positions, and more.
 }
 \examples{
-get_user_leagues(688556535013502976)
-get_user_leagues("688556535013502976", sport = "nfl", season = "2021")
+\dontrun{get_user_leagues(688556535013502976)}
+\dontrun{get_user_leagues("688556535013502976", sport = "nfl", season = "2021")}
 
 }
 \author{

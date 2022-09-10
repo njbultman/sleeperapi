@@ -16,7 +16,7 @@ Returns a data frame containing draft information for that league.
 Given a league ID, gather draft information for that league.
 }
 \examples{
-get_league_drafts(688281863499907072)
+\dontrun{get_league_drafts(688281863499907072)}
 
 }
 \author{

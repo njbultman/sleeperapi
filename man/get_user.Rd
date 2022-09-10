@@ -17,7 +17,7 @@ Given a user ID, grab the data concerning that particular user. This includes us
 name, and more.
 }
 \examples{
-get_user(688556535013502976)
+\dontrun{get_user(688556535013502976)}
 
 }
 \author{

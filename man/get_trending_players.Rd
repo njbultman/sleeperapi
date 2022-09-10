@@ -24,7 +24,7 @@ ID and count are returned in a data frame, allowing one to see which players hav
 given the particular lookback period (default lookback period of one day).
 }
 \examples{
-get_trending_players("nfl", "add", 24, 25)
+\dontrun{get_trending_players("nfl", "add", 24, 25)}
 
 }
 \author{

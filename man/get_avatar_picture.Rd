@@ -20,7 +20,7 @@ Note that this function downloads the image into your temporary directory to dis
 it. Then, the function deletes the file before completing.
 }
 \examples{
-get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde", type = "full")
+\dontrun{get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde", type = "full")}
 
 }
 \author{
