@@ -1,10 +1,13 @@
 Package: sleeperapi
 Type: Package
-Title: Wrapper Functions Around Sleeper API
-Version: 1.0.3
-Author: Nick Bultman
-Maintainer: Nick Bultman <njbultman74@gmail.com>
-Description: For those wishing to interact with the Sleeper (Fantasy Sports) API without looking too much into its documentation, this package offers wrapper functions around the available API calls to make it easier.
+Title: Wrapper Functions Around 'Sleeper' (Fantasy Sports) API
+Version: 1.0.4
+Authors@R: 
+    c(person(given = "Nick",
+             family = "Bultman",
+             role = c("aut", "cre", "cph"),
+             email = "njbultman74@gmail.com"))
+Description: For those wishing to interact with the 'Sleeper' (Fantasy Sports) API (<https://api.sleeper.app/>) without looking too much into its documentation (found at <https://docs.sleeper.app/>), this package offers wrapper functions around the available API calls to make it easier.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.1.1
