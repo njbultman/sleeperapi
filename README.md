@@ -4,8 +4,9 @@
 
 ### *Installation*
 Install release version from CRAN:
+
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/sleeperapi)](ttps://cran.r-project.org/package=sleeperapi)
-[![downloads](https://cranlogs.r-pkg.org/badges/sleeperapi)](https://www.r-pkg.org/services)
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/sleeperapi)](https://www.r-pkg.org/services)
 [![R-CMD-check](https://github.com/njbultman/sleeperapi/workflows/R-CMD-check/badge.svg)](https://github.com/njbultman/sleeperapi/actions) 
 [![Codecov test coverage](https://codecov.io/gh/njbultman/sleeperapi/branch/main/graph/badge.svg)](https://codecov.io/gh/njbultman/sleeperapi?branch=main)
 
@@ -14,10 +15,10 @@ install.packages("sleeperapi")
 library(sleeperapi)
 ```
 
-Install latest development version through GitHub via `devtools` package
+Install latest development version through GitHub via `devtools` package:
 
 ```R
-install.packages("devtools") # If have not installed it already
+install.packages("devtools") # If have not installed package already
 library(devtools)
 devtools::install_github("njbultman/sleeperapi")
 ```
