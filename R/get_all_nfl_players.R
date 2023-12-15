@@ -5,19 +5,18 @@
 #' data frame will be returned or a list. When 'clean' is TRUE, a data frame will be returned. Note that while
 #' most data is returned for the data frame, metadata will not be due to its dynamic nature. For example, 
 #' metadata can be data frames on their own, so attempting to put them in a single data frame is not feasible. 
-#' Moreover, some data in an observation is concatenated together to ensure each piece of an observation fits 
-#' into its appropriate column within the observation of the data frame. For example, a player can have multiple
-#' positions listed, so these would be concatenated together in a single column for that observation. If either 
-#' of these pieces will be problematic for you, it is recommended to keep 'clean' set to FALSE and parse the 
-#' default list as you see fit. Lastly, note that when 'clean' is TRUE, the transformation process to go from
-#' a list to a data frame does take some time, so do not worry if the function is taking a while to run.
-#'
+#' One might notice that a metadata column is present, but this is not properly cleanded since there could be NULLs, 
+#' rookie years, injury overrides, or other miscellaneous columns that could add additional explanatory information. 
+#' If either of these pieces will be problematic for you, it is recommended to keep 'clean' set to FALSE and parse 
+#' the default list as you see fit.
+#' 
 #' @return Returns a list or data frame containing information about the NFL players.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, December 2021
 #' @keywords nfl players
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
-#' @importFrom plyr rbind.fill
+#' @importFrom dplyr bind_rows
+#' @importFrom purrr map_depth
 #' @export
 #' @examples
 #' \dontrun{get_all_nfl_players(clean = FALSE)}
@@ -38,31 +37,22 @@ get_all_nfl_players <- function(clean = FALSE) {
     return(x)
   # If parameter 'clean' is TRUE, go through cleaning process to prepare data frame
   } else if(clean == TRUE) {
-  # Loop through list of data to get variable names - store in data frame
-  num_vars_lists <- as.data.frame(sapply(x, function(x) length(names(x))))
-  # Rename new column created in data frame
-  names(num_vars_lists) <- "len"
-  # Find maximum amount of variables returned out of each list element in larger list
-  index_max_vars <- which(num_vars_lists$len == max(num_vars_lists$len))[1]
-  # Store largest vector of names for data frame that will ultimately be returned
-  df_names <- names(x[[index_max_vars]])
-  # Create final empty data frame to be returned - including instantiating column names
-  df <- data.frame(matrix(ncol = length(df_names), nrow = 0))
-  names(df) <- df_names
-  # Loop through each list within the list to extract data
-  for(list in x) {
-    # Set metadata to NULL - given dynamic nature of metadata, not feasible currently to put into data frame
-    list[['metadata']] <- NULL
-    # Loop through each embedded list of values and concatenate values that will be placed into data frame observation
-    for(val in 1:length(list)) {
-      list[[val]] <- paste0(list[[val]], collapse = ",")
+    # Find unique lengths of lists within list and sort in descending order
+    dist_lengths <- sort(unique(sapply(x, length)), decreasing = TRUE)
+    # Convert all NULLs to NA (for preservation when using the unlist function later)
+    x_null_to_na <- purrr::map_depth(x, 2, ~ifelse(is.null(.x), NA, .x))
+    # Instantiate master data frame
+    df_master <- data.frame()
+    # Loop through differing list lengths
+    for(i in dist_lengths) {
+      # Obtain matrix of specific lists by length and append all records together
+      x_mat <- do.call(rbind, Filter(function(x) length(x) == i, x_null_to_na))
+      # Unlist matrix to obtain data frame - keep strings as they are (no factors)
+      df_temp <- data.frame(apply(x_mat, MARGIN = 2, unlist, use.names = FALSE), stringsAsFactors = FALSE)
+      # Bind rows to master data frame
+      df_master <- dplyr::bind_rows(df_master, df_temp)
     }
-    # Convert NULL to NA
-    list[sapply(list, is.null)] <- NA
-    # Bind observation in loop to final data frame
-    df <- plyr::rbind.fill(df, as.data.frame(list, stringsAsFactors = FALSE))
-  }
-  # Return final data frame
-  return(df)
+    # Return cleaned master data frame
+    return(df_master)
   }
 }

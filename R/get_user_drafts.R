@@ -32,7 +32,15 @@ get_user_drafts <- function(user_id, sport, season) {
     # If length is zero, inform user and return nothing
     message("No data was returned - are you sure all parameters were inputted correctly?")
   } else {
-    # If length is not zero, return object (data frame)
-    return(x)
+    # If length is not zero, break out nested data frames
+    x_settings <- x$settings
+    x_metadata <- x$metadata
+    # Remove nested data frames from original query
+    x$settings <- NULL
+    x$metadata <- NULL
+    # Bind broken out data frames to main query
+    x_fin <- cbind(x, x_settings, x_metadata)
+    # Return final data frame
+    return(x_fin)
   }
 }

@@ -21,7 +21,18 @@ get_loser_playoff_bracket <- function(league_id) {
     # If NULL, inform the user and return nothing
     message("League ID did not return any results. Did you enter the league ID correctly?")
   } else {
-    # If not NULL, return the object (data frame)
-    return(x)
+    # If not NULL, split out nested data frames
+    x_t1_from <- x$t1_from
+    x_t2_from <- x$t2_from
+    # Remove nested data frames from main query
+    x$t1_from <- NULL
+    x$t2_from <- NULL
+    # Change column names in nested data frames for easy interpretability
+    names(x_t1_from) <- c("t1_from_w", "t1_from_l")
+    names(x_t2_from) <- c("t2_from_w", "t2_from_l")
+    # Bind split out data frames to main query
+    x_fin <- cbind(x, x_t1_from, x_t2_from)
+    # Return final data frame
+    return(x_fin)
   }
 }

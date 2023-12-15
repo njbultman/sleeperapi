@@ -8,6 +8,7 @@
 #' @keywords league users
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
+#' @importFrom dplyr rename
 #' @export
 #' @examples
 #' \dontrun{get_league_users(688281863499907072)}
@@ -22,7 +23,14 @@ get_league_users <- function(league_id) {
     # If class is list, it is an empty list and no data was found - inform user and do not return anything
     message("No data found - was the league ID entered correctly?")
   } else {
-    # If class is not list, a data frame is returned and data was found - return data
-    return(x)
+    # If class is not list, strip out metadata nested data frame from main query
+    x_metadata <- dplyr::rename(x$metadata,
+                                "avatar_upload" = "avatar")
+    # Drop metadata nested data frame from main query
+    x$metadata <- NULL
+    # Bind metadata data frame to main query so no nested data frames
+    x_fin <- cbind(x, x_metadata)
+    # Return final data frame
+    return(x_fin)
   }
 }

@@ -3,7 +3,7 @@
 #' Given a league ID, grab the data for that league. Includes roster positions, season type, if it is in
 #' season, and more.
 #'
-#' @return Returns a list containing information about the league.
+#' @return Returns a data frame containing information about the league.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2021
 #' @keywords user users
 #' @importFrom httr GET content
@@ -22,7 +22,14 @@ get_league <- function(league_id) {
     # If NULL, inform user and return nothing
     message("League ID did not return any results. Did you enter the league ID correctly?")
   } else {
-    # If not NULL, return object (list)
-    return(x)
+    # If not NULL, parse original list to data frame object, ignoring nested data frames
+    x_df <- do.call(data.frame, args = list(stringsAsFactors = FALSE, Filter(function(z) length(z) == 1, x)))
+    # Split out nested data frames in original list object
+    x_df_settings <- do.call(data.frame, list(stringsAsFactors = FALSE, x$settings))
+    x_df_metadata <- do.call(data.frame, list(stringsAsFactors = FALSE, x$metadata))
+    # Bind all data frames together
+    x_df_fin <- cbind(x_df, x_df_settings, x_df_metadata)
+    # Return final data frame
+    return(x_df_fin)
   }
 }

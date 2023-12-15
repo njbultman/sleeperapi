@@ -34,8 +34,14 @@ get_matchups <- function(league_id, week) {
     # If NULL, inform user and return nothing
     message("No data found. Was the league ID entered correctly?")
   } else {
-    # If not NULL, return object (data frame)
-    return(x)
+    # If not NULL, break out nested data frame
+    x_player_points <- x$players_points
+    # Remove nested data frame from main query
+    x$players_points <- NULL
+    # Bind broken out data frame to main query
+    x_fin <- cbind(x, x_player_points)
+    # Return final data frame
+    return(x_fin)
   }
 }
 

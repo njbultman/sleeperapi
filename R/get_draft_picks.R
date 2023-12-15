@@ -7,6 +7,7 @@
 #' @keywords draft picks
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
+#' @importFrom dplyr left_join
 #' @export
 #' @examples
 #' \dontrun{get_draft_picks(688281872463106048)}
@@ -21,7 +22,13 @@ get_draft_picks <- function(draft_id) {
     # If NULL is returned, no data was found - inform user and do not return anything
     message("No data found - was the draft ID entered correctly?")
   } else {
-    # If NULL is not returned, a data frame is returned and data was found - return data
-    return(x)
+    # If NULL is not returned, strip out metadata nested data frame
+    x_metadata <- x$metadata
+    # Drop metadata nested data frame from main query
+    x$metadata <- NULL
+    # Join metadata data frame to main query by player ID
+    x_fin <- dplyr::left_join(x, x_metadata, by = "player_id")
+    # Return final data frame
+    return(x_fin)
   }
 }

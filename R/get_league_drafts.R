@@ -21,7 +21,17 @@ get_league_drafts <- function(league_id) {
     # If class is list, it is an empty list and no data was found - inform user and do not return anything
     message("No data found - was the league ID entered correctly?")
   } else {
-    # If class is not list, a data frame is returned and data was found - return data
-    return(x)
+    # If class is not list, break out nested data frames
+    x_settings <- x$settings
+    x_metadata <- x$metadata
+    x_draft_order <- x$draft_order
+    # Remove nested data frames from main query
+    x$settings <- NULL
+    x$metadata <- NULL
+    x$draft_order <- NULL
+    # Bind previously nested data frames into main query
+    x_fin <- cbind(x, x_settings, x_metadata, x_draft_order)
+    # Return final data frame
+    return(x_fin)
   }
 }

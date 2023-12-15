@@ -28,8 +28,20 @@ get_transactions <- function(league_id, round) {
     # If returned object is a list, inform user and return nothing
     message("No data found. Were the league ID and round entered correctly?")
   } else {
-    # If returned object is not a list, return object (which is a data frame)
-    return(x)
+    # If returned object is not a list, break out nested data frames
+    x_drops <- x$drops
+    x_adds <- x$adds
+    x_settings <- x$settings
+    x_metadata <- x$metadata
+    # Remove nested data frames from main query
+    x$drops <- NULL
+    x$adds <- NULL
+    x$settings <- NULL
+    x$metadata <- NULL
+    # Bind broken out data frames back into main query
+    x_fin <- cbind(x, x_drops, x_adds, x_settings, x_metadata)
+    # Return final data frame
+    return(x_fin)
   }
 }
 

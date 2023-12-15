@@ -22,7 +22,15 @@ get_rosters <- function(league_id) {
     # If NULL, inform the user and return nothing
     message("League ID did not return any results. Did you enter the league ID correctly?")
   } else {
-    # If not NULL, return the object (data frame)
-    return(x)
+    # If not NULL, pull out separate data frames to define settings and metadata
+    x_settings <- x$settings
+    x_metadata <- x$metadata
+    # Drop data frames from original query
+    x$settings <- NULL
+    x$metadata <- NULL
+    # Bind data frames to original query to ensure no nested data frames
+    x_fin <- cbind(x, x_settings, x_metadata)
+    # Return final data frame
+    return(x_fin)
   }
 }
