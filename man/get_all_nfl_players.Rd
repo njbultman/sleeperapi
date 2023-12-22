@@ -18,12 +18,10 @@ per day at most given the amount of data that it returns. By modifying the 'clea
 data frame will be returned or a list. When 'clean' is TRUE, a data frame will be returned. Note that while
 most data is returned for the data frame, metadata will not be due to its dynamic nature. For example, 
 metadata can be data frames on their own, so attempting to put them in a single data frame is not feasible. 
-Moreover, some data in an observation is concatenated together to ensure each piece of an observation fits 
-into its appropriate column within the observation of the data frame. For example, a player can have multiple
-positions listed, so these would be concatenated together in a single column for that observation. If either 
-of these pieces will be problematic for you, it is recommended to keep 'clean' set to FALSE and parse the 
-default list as you see fit. Lastly, note that when 'clean' is TRUE, the transformation process to go from
-a list to a data frame does take some time, so do not worry if the function is taking a while to run.
+One might notice that a metadata column is present, but this is not properly cleanded since there could be NULLs, 
+rookie years, injury overrides, or other miscellaneous columns that could add additional explanatory information. 
+If either of these pieces will be problematic for you, it is recommended to keep 'clean' set to FALSE and parse 
+the default list as you see fit.
 }
 \examples{
 \dontrun{get_all_nfl_players(clean = FALSE)}
