@@ -1,0 +1,46 @@
+#' Generate Master Data Frame for Plotting
+#'
+#' Given the league ID, generate a master data set that is used by plotting functions and generating fast
+#' insights.
+#'
+#' @return Returns a data frame containing roster, league user, and overall league information. 
+#' @author Nick Bultman, \email{njbultman74@@gmail.com}, December 2023
+#' @keywords roster league user full master
+#' @importFrom dplyr left_join rename
+#' @importFrom gridExtra grid.arrange
+#' @importFrom ggplot2 ggplot2 geom_col geom_text coord_flip labs theme scale_y_reverse element_text aes position_stack
+#' @importFrom stats reorder
+#' @importFrom scales comma
+#' @export
+#' @examples
+#' \dontrun{plot_generate_master_data(688281863499907072)}
+#'
+#' @param lookback_hours Number of hours to look back (numeric). Default is 24
+#' @param limit Number of results you would like (numeric). Default is 10
+#'
+plot_generate_master_data <- function(league_id) {
+  # Query league data first to see if league ID is valid
+  league_data <- suppressMessages(get_league(league_id))
+  if(is.null(league_data)) {
+    # If NULL, inform user and return nothing
+    message("League ID did not return any results. Did you enter the league ID correctly?")
+  } else { 
+    # Query data with league ID to get roster and league user data
+    roster_data <- get_rosters(league_id)
+    league_user_data <- get_league_users(league_id)
+    # Remove league ID from league user data since already present in roster data (or else will have duplicates)
+    league_user_data$league_id <- NULL
+    # Rename avatar column since same naming convention present in other data that will be joined to it
+    league_data <- dplyr::rename(league_data, "avatar_league" = "avatar")
+    # Join roster data to league user data
+    master_df_pre <- dplyr::left_join(roster_data, 
+                                     league_user_data, 
+                                     by = c("owner_id" = "user_id"))
+    # Join previous data frame to league data data frame
+    master_df <- dplyr::left_join(master_df_pre, 
+                                  league_data,
+                                  by = "league_id")
+    # Return full data frame
+    return(master_df)
+  }
+}
