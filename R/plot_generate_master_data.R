@@ -7,10 +7,6 @@
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, December 2023
 #' @keywords roster league user full master
 #' @importFrom dplyr left_join rename
-#' @importFrom gridExtra grid.arrange
-#' @importFrom ggplot2 ggplot2 geom_col geom_text coord_flip labs theme scale_y_reverse element_text aes position_stack
-#' @importFrom stats reorder
-#' @importFrom scales comma
 #' @export
 #' @examples
 #' \dontrun{plot_generate_master_data(688281863499907072)}
