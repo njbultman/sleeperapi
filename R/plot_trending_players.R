@@ -67,8 +67,7 @@ plot_trending_players <- function(lookback_hours = 24, limit = 10) {
                       name = "Drops")
   # Style plot of drops
   drop_plot_fin <- plotly::layout(drop_plot,
-                                  yaxis = list(title = "Name", 
-                                              autorange = "reversed", 
+                                  yaxis = list(title = "Name",
                                               side = "right"),
                                   xaxis = list(title = "Number of Drops"))
   # Create a subplot to display both figures
@@ -79,7 +78,7 @@ plot_trending_players <- function(lookback_hours = 24, limit = 10) {
                     legend = list(orientation = "h",
                                   xanchor = "center",
                                   x = 0.5,
-                                  y = 1))
+                                  y = -0.1))
   # Return final subplot
   return(fig_fin)
 }
