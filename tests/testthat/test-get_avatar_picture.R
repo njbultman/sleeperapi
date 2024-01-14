@@ -12,6 +12,6 @@ test_that("Returns error if invalid type specified", {
 
 # Test 3: Informs user that file was not deleted if keep_image is TRUE
 test_that("Returns error if invalid type specified", {
-  expect_message(get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde", type = "full", keep_image = TRUE), regexp = "Temporary file not deleted. It can be found at*")
+  expect_message(get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde", type = "thumbnail", keep_image = TRUE), regexp = "Temporary file not deleted. It can be found at*")
 })
 
