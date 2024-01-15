@@ -15,7 +15,7 @@
 #'
 plot_league_records_table <- function(league_id) {
     # Obtain master plotting data frame from league ID
-    master_df <- plot_generate_master_data(league_id)
+    master_df <- get_main_data(league_id)
     # If nothing is returned for master data frame, return nothing
     # A message already informs user of error in plot_generate_master_data
     if(is.null(master_df)) {
