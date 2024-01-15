@@ -53,11 +53,10 @@ plot_trending_players <- function(lookback_hours = 24, limit = 10) {
   add_plot_fin <- plotly::layout(add_plot, 
                                    yaxis = list(title = "Name"),
                                    xaxis = list(title = "Number of Adds"))
-    
   # Generate plot of drops
   drop_plot <- plotly::plot_ly(data = total_drop_df, 
                       x = ~count, 
-                      y = ~reorder(name, count),
+                      y = ~stats::reorder(name, count),
                       text = ~scales::comma(count), 
                       textposition = "auto",
                       type = "bar",
