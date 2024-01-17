@@ -6,10 +6,7 @@
 #' @return Returns a dashboard of current league state.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, January 2024
 #' @keywords league dashboard plot
-#' @importFrom dplyr left_join
 #' @importFrom plotly plot_ly layout subplot
-#' @importFrom stats reorder
-#' @importFrom scales comma
 #' @export
 #' @examples
 #' \dontrun{plot_league_dashboard(688281863499907072)}
@@ -18,7 +15,7 @@
 #'
 plot_league_dashboard <- function(league_id) {
     # Obtain master plotting data frame from league ID
-    master_df <- plot_generate_master_data(league_id)
+    master_df <- get_main_data(league_id)
     # If nothing is returned for master data frame, return nothing
     # A message already informs user of error in plot_generate_master_data
     # If data frame returned, store certain strings in variables

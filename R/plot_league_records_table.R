@@ -22,7 +22,7 @@ plot_league_records_table <- function(league_id) {
         return(NULL)
     } else {
         # If a data frame is returned, sort it by rank_fpts
-        master_df_sort <- dplyr::arrange(master_df, rank_fpts)
+        master_df_sort <- dplyr::arrange(master_df, master_df$rank_fpts)
         # Generate and return table
         fig <- plotly::plot_ly(
             type = "table",
