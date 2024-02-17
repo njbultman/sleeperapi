@@ -9,6 +9,7 @@
 #' @importFrom DT datatable styleColorBar styleInterval formatStyle
 #' @importFrom grDevices colorRampPalette
 #' @importFrom dplyr arrange
+#' @importFrom RColorBrewer brewer.pal
 #' @export
 #' @examples
 #' \dontrun{plot_league_records_table(688281863499907072)}

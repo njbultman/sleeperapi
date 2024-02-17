@@ -173,7 +173,7 @@ plot_league_dashboard <- function(league_id) {
       input$trendingplayerslimit
     })
     output$trending_players_plot <- plotly::renderPlotly({
-      plot_trending_players(lookback_hours = lookback_hours(),
+      plot_trending_players(lookback_hours = lookback_hours(), # nolint
                             limit = limit(),
                             title = "",
                             tick_color = "fff")

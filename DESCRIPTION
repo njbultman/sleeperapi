@@ -11,7 +11,7 @@ Description: For those wishing to interact with the 'Sleeper' (Fantasy Sports) A
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.3.0
-Imports: httr, jsonlite, plotly, dplyr, purrr, scales
+Imports: httr, jsonlite, plotly, dplyr, purrr, scales, DT, shiny, htmlwidgets, shinycssloaders, shinyWidgets, RColorBrewer, htmltools
 Suggests: 
     testthat (>= 2.0.0),
     covr
