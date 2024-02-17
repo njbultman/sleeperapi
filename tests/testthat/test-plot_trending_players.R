@@ -1,5 +1,7 @@
-# Unit tests for pot_trending_players function
+# Unit tests for plot_trending_players function
 
-#test_that("multiplication works", {
- # expect_equal(2 * 2, 4)
-#})
+# Test 1: Good function call returns plotly object
+test_that("good function call returns plotly object", {
+  expect_equal(class(plot_trending_players()),
+               c("plotly", "htmlwidget"))
+})

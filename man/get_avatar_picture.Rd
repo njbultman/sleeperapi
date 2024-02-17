@@ -23,7 +23,9 @@ it. Then, the function deletes the file before completing. If it would be prefer
 the image at the temporary location, set the keep_image argument to TRUE (default is FALSE).
 }
 \examples{
-\dontrun{get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde", type = "full", keep_image = FALSE)}
+\dontrun{get_avatar_picture("c751b27d9158c1dd41bd33dc7e4bcdde",
+   type = "full",
+   keep_image = FALSE)}
 
 }
 \author{

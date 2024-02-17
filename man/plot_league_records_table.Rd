@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_league_records_table.R
 \name{plot_league_records_table}
 \alias{plot_league_records_table}
-\title{Plot League Information Table}
+\title{Plot League Records Table}
 \usage{
 plot_league_records_table(league_id)
 }
@@ -13,7 +13,8 @@ plot_league_records_table(league_id)
 Returns a table containing team names and their associated records.
 }
 \description{
-Given the league ID, generate a table showing team names and their associated statistics (wins, losses, points for/against, etc.)
+Given the league ID, generate a table showing team
+names and their associated records.
 }
 \examples{
 \dontrun{plot_league_records_table(688281863499907072)}

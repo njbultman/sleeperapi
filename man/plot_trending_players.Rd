@@ -4,22 +4,34 @@
 \alias{plot_trending_players}
 \title{Plot Trending NFL Player Information}
 \usage{
-plot_trending_players(lookback_hours = 24, limit = 10)
+plot_trending_players(
+  lookback_hours = 24,
+  limit = 10,
+  tick_color = "black",
+  title = "Trending Adds/Drops"
+)
 }
 \arguments{
 \item{lookback_hours}{Number of hours to look back (numeric). Default is 24}
 
 \item{limit}{Number of results you would like (numeric). Default is 10}
+
+\item{tick_color}{Font color, name or hex, for display names (string). Default is black}
+
+\item{title}{Plot title - default is "Trending Adds/Drops" (string).}
 }
 \value{
-Returns a plot containing information (name and count) about the NFL trending players.
+Returns a plot containing information (name and
+        count) about the NFL trending players.
 }
 \description{
-Given the number of hours to look back, and a limit of how many players to return, display a
-figure showing the top NFL additions and drops.
+Given the number of hours to look back, a limit of
+how many players to return, a color for labels, and a
+title, display a figure showing the top NFL additions and drops.
 }
 \examples{
-\dontrun{get_trending_players("nfl", "add", 24, 25)}
+\dontrun{plot_trending_players(lookback_hours = 24, limit = 10)}
+\dontrun{plot_trending_players(lookback_hours = 24, limit = 10, tick_color = "white")}
 
 }
 \author{
