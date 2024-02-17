@@ -10,6 +10,7 @@
 #' @keywords league information statistics
 #' @importFrom plotly plot_ly
 #' @importFrom dplyr arrange
+#' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
 #' \dontrun{plot_league_streaks_table(688281863499907072)}
