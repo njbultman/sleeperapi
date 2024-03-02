@@ -102,6 +102,32 @@ plot_league_dashboard <- function(league_id) {
         shiny::hr(style = "color:white"),
         # Line break
         shiny::br(),
+        # Create a fluid row to hold the label for the display name input button
+        shiny::fluidRow(
+          shiny::column(width = 12,
+                        shiny::h2(htmltools::HTML(paste0("<b>Display Name Selection</b>")), style = "color:white")) # nolint
+        ),
+        # Create a fluid row to hold display name input
+        shiny::fluidRow(
+          shiny::column(width = 12,
+                        shiny::selectInput(inputId = "displaynameselection", # nolint
+                                           label = "",
+                                           choices = sort(unique(master_df$display_name)), # nolint
+                                           selected = sort(unique(master_df$display_name))[1]) # nolint
+          )
+        ),
+        # Create a fluid row to hold the labels for team analysis plots
+        shiny::fluidRow(
+          shiny::column(width = 12,
+                        shiny::h2(htmltools::HTML(paste0("<b>Waiver Budget Status</b>")), align = "center", style = "color:white")) # nolint
+        ),
+        # Create a fluid row to hold team analysis plots
+        shiny::fluidRow(
+          # Display regular season ranking plot
+          shiny::column(width = 12,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_waiver_budget_plot")) # nolint  
+          )
+        )
       ),
       # Create third tab (trending players)
       shiny::tabPanel("Trending Players", fluid = TRUE,
@@ -160,6 +186,14 @@ plot_league_dashboard <- function(league_id) {
     # Render regular season league rankings plot
     output$regular_season_rankings_plot <- plotly::renderPlotly({
       plot_regular_season_rankings(league_id, title = "", tick_color = "#fff")
+    })
+    # Render regular season league rankings plot
+    output$user_waiver_budget_plot <- plotly::renderPlotly({
+      plot_user_waiver_budget(league_id,
+                              display_name = input$displaynameselection,
+                              title = "",
+                              tick_color = "#fff",
+                              budget_total_line_color = "#fff")
     })
     # Render league information  table
     output$league_information_table <- DT::renderDataTable({
