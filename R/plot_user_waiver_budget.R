@@ -27,7 +27,7 @@ plot_user_waiver_budget <- function(league_id,
   # Check to see if title, display_name, tick_color, and budget line color are strings
   if (!is.character(title) || !is.character(display_name) || !is.character(tick_color) || !is.character(budget_total_line_color)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display_name, tick_color must all be strings.")
+    stop("Title, display_name, tick_color, and budget line color must all be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
