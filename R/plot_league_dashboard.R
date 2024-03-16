@@ -116,6 +116,26 @@ plot_league_dashboard <- function(league_id) {
                                            selected = sort(unique(master_df$display_name))[1]) # nolint
           )
         ),
+        # Create a fluid row to hold the labels for total fantasy points plots
+        shiny::fluidRow(
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Total Fantasy Points For</b>")), align = "center", style = "color:white") # nolint
+          ),
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Total Fantasy Points Against</b>")), align = "center", style = "color:white") # nolint
+          ) # nolint
+        ),
+        # Create a fluid row to hold total fantasy points plots
+        shiny::fluidRow(
+          # Display total fantasy points for plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_for_plot")) # nolint  
+          ),
+          # Display total fantasy points for plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_against_plot")) # nolint  
+          )
+        ),
         # Create a fluid row to hold the labels for team analysis plots
         shiny::fluidRow(
           shiny::column(width = 12,
@@ -194,6 +214,20 @@ plot_league_dashboard <- function(league_id) {
                               title = "",
                               tick_color = "#fff",
                               budget_total_line_color = "#fff")
+    })
+    # Render user fantasy points for plot
+    output$user_fantasy_points_for_plot <- plotly::renderPlotly({
+      plot_user_fantasy_points_for(league_id,
+                                   display_name = input$displaynameselection,
+                                   title = "",
+                                   tick_color = "#fff")
+    })
+    # Render user fantasy points for plot
+    output$user_fantasy_points_against_plot <- plotly::renderPlotly({
+      plot_user_fantasy_points_against(league_id,
+                                   display_name = input$displaynameselection,
+                                   title = "",
+                                   tick_color = "#fff")
     })
     # Render league information  table
     output$league_information_table <- DT::renderDataTable({

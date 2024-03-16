@@ -10,7 +10,7 @@ Authors@R:
 Description: For those wishing to interact with the 'Sleeper' (Fantasy Sports) API (<https://api.sleeper.app/>) without looking too much into its documentation (found at <https://docs.sleeper.app/>), this package offers wrapper functions around the available API calls to make it easier.
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Imports: httr, jsonlite, plotly, dplyr, purrr, scales, DT, shiny, htmlwidgets, shinycssloaders, shinyWidgets, RColorBrewer, htmltools, tidyr
 Suggests: 
     testthat (>= 2.0.0),
