@@ -123,7 +123,7 @@ plot_league_dashboard <- function(league_id) {
           ),
           shiny::column(width = 6,
                         shiny::h2(htmltools::HTML(paste0("<b>Total Fantasy Points Against</b>")), align = "center", style = "color:white") # nolint
-          ) # nolint
+          )
         ),
         # Create a fluid row to hold total fantasy points plots
         shiny::fluidRow(
@@ -138,13 +138,21 @@ plot_league_dashboard <- function(league_id) {
         ),
         # Create a fluid row to hold the labels for team analysis plots
         shiny::fluidRow(
-          shiny::column(width = 12,
-                        shiny::h2(htmltools::HTML(paste0("<b>Waiver Budget Status</b>")), align = "center", style = "color:white")) # nolint
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Fantasy Points Differential</b>")), align = "center", style = "color:white") # nolint
+          ),
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Waiver Budget Status</b>")), align = "center", style = "color:white") # nolint
+          )
         ),
         # Create a fluid row to hold team analysis plots
         shiny::fluidRow(
+          # Display fantasy points differential plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_differential_plot")) # nolint  
+          ),
           # Display regular season ranking plot
-          shiny::column(width = 12,
+          shiny::column(width = 6,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_waiver_budget_plot")) # nolint  
           )
         )
@@ -222,12 +230,19 @@ plot_league_dashboard <- function(league_id) {
                                    title = "",
                                    tick_color = "#fff")
     })
-    # Render user fantasy points for plot
+    # Render user fantasy points against plot
     output$user_fantasy_points_against_plot <- plotly::renderPlotly({
       plot_user_fantasy_points_against(league_id,
-                                   display_name = input$displaynameselection,
-                                   title = "",
-                                   tick_color = "#fff")
+                                       display_name = input$displaynameselection, # nolint
+                                       title = "",
+                                       tick_color = "#fff")
+    })
+    # Render user fantasy points against plot
+    output$user_fantasy_points_differential_plot <- plotly::renderPlotly({
+      plot_user_fantasy_points_differential(league_id,
+                                       display_name = input$displaynameselection, # nolint
+                                       title = "",
+                                       tick_color = "#fff")
     })
     # Render league information  table
     output$league_information_table <- DT::renderDataTable({
