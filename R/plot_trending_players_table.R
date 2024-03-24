@@ -18,13 +18,13 @@
 #' \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10)}
 #' \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10, font_color = "white")}
 #'
-#' @param lookback_hours Number of hours to look back (numeric). Default is 24
-#' @param limit Number of results you would like (numeric). Default is 10, max is 50
-#' @param font_color Font color, name or hex (string). Default is black
+#' @param lookback_hours Number of hours to look back. Default is 24 (numeric).
+#' @param limit Number of results you would like. Default is 10, max is 50 (numeric).
+#' @param font_color Font color, name or hex. Default is "inherit" (string).
 #'
 plot_trending_players_table <- function(lookback_hours = 24,
                                         limit = 10,
-                                        font_color = "black") {
+                                        font_color = "inherit") {
   # Test to see if limit is greater than 50
   if (limit > 50) {
     # If it is, stop program and alert user
@@ -66,11 +66,19 @@ plot_trending_players_table <- function(lookback_hours = 24,
     # Bind data together
     total_df <- dplyr::bind_rows(total_add_df, total_drop_df)
     # Generate javascript based on font_color specified
-        js_dt <- paste0("function(settings, json) {$(this.api().table().body()).css({'color': '",  # nolint
-                        font_color,
-                        "'});$(this.api().table().header()).css({'color': '",
-                        font_color,
-                        "'})}")
+    js_dt <- paste0("function(settings, json) {$(this.api().table().body()).css({'color': '",  # nolint
+                      font_color,
+                      "'});$(this.api().table().header()).css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_info').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_filter').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_length').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_paginate').css({'color': '",
+                      font_color,
+                      "'})}")
     # Generate base table
     fig <- DT::datatable(total_df[, c("name",
                                       "add_drop",
@@ -89,8 +97,7 @@ plot_trending_players_table <- function(lookback_hours = 24,
                                       "Team",
                                       "Years of Experience"),
                          options = list(pageLength = 100,
-                                        initComplete = htmlwidgets::JS(js_dt), # nolint
-                                        dom = "t"),
+                                        initComplete = htmlwidgets::JS(js_dt)), # nolint
                          rownames = FALSE)
     # Add background color (green or red) based on add/drop value
     fig_fin <- DT::formatStyle(fig,

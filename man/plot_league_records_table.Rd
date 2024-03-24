@@ -4,10 +4,12 @@
 \alias{plot_league_records_table}
 \title{Plot League Records Table}
 \usage{
-plot_league_records_table(league_id)
+plot_league_records_table(league_id, font_color = "inherit")
 }
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}
+
+\item{font_color}{Font color, hex code or name. Default is "inherit" (string).}
 }
 \value{
 Returns a table containing team names and their associated records.

@@ -4,12 +4,12 @@
 \alias{plot_league_streaks_table}
 \title{Plot League Streaks Table}
 \usage{
-plot_league_streaks_table(league_id, font_color = "black")
+plot_league_streaks_table(league_id, font_color = "inherit")
 }
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}
 
-\item{font_color}{Header font color, hex code or name. Default is "black" (string).}
+\item{font_color}{Header font color, hex code or name. Default is "inherit" (string).}
 }
 \value{
 Returns a table containing display names and their streaks.

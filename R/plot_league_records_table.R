@@ -15,8 +15,9 @@
 #' \dontrun{plot_league_records_table(688281863499907072)}
 #'
 #' @param league_id League ID generated from Sleeper (numeric).
+#' @param font_color Font color, hex code or name. Default is "inherit" (string).
 #'
-plot_league_records_table <- function(league_id) {
+plot_league_records_table <- function(league_id, font_color = "inherit") {
   # Obtain master plotting data frame from league ID
   master_df <- get_main_data(league_id)
   # If nothing is returned for master data frame, return nothing
@@ -31,6 +32,20 @@ plot_league_records_table <- function(league_id) {
     clrswins <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = "RdYlGn", n = 11))(length(brkswins) + 1) # nolint
     brkslosses <- quantile(master_df_sort$losses, probs = seq(0.05, 0.95, 0.05), na.rm = TRUE) # nolint
     clrslosses <- rev(grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = "RdYlGn", n = 11))(length(brkslosses) + 1)) # nolint
+    # Generate javascript based on font_color specified
+    js_dt <- paste0("function(settings, json) {$(this.api().table().body()).css({'color': '",  # nolint
+                    font_color,
+                    "'});$(this.api().table().header()).css({'color': '",
+                    font_color,
+                    "'});$('.dataTables_info').css({'color': '",
+                    font_color,
+                    "'});$('.dataTables_filter').css({'color': '",
+                    font_color,
+                    "'});$('.dataTables_length').css({'color': '",
+                    font_color,
+                    "'});$('.dataTables_paginate').css({'color': '",
+                    font_color,
+                    "'})}")
     # Generate and return base table
     fig <- DT::datatable(master_df_sort[, c("team_name",
                                             "display_name",
@@ -50,7 +65,8 @@ plot_league_records_table <- function(league_id) {
                    "Fantasy Points For",
                    "Fantasy Points Against",
                    "Streak"),
-      options = list(pageLength = 100),
+      options = list(pageLength = 100,
+                     initComplete = htmlwidgets::JS(js_dt)),
       rownames = FALSE,
     )
     # Add green color bar to total fantasy points column

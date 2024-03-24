@@ -7,15 +7,15 @@
 plot_trending_players_table(
   lookback_hours = 24,
   limit = 10,
-  font_color = "black"
+  font_color = "inherit"
 )
 }
 \arguments{
-\item{lookback_hours}{Number of hours to look back (numeric). Default is 24}
+\item{lookback_hours}{Number of hours to look back. Default is 24 (numeric).}
 
-\item{limit}{Number of results you would like (numeric). Default is 10, max is 50}
+\item{limit}{Number of results you would like. Default is 10, max is 50 (numeric).}
 
-\item{font_color}{Font color, name or hex (string). Default is black}
+\item{font_color}{Font color, name or hex. Default is "inherit" (string).}
 }
 \value{
 Returns a plot containing information (name and

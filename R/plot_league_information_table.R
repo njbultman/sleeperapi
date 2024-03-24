@@ -18,9 +18,9 @@
 #' \dontrun{plot_league_information_table(688281863499907072, font_color = "#ee5050")}
 #'
 #' @param league_id League ID generated from Sleeper (numeric).
-#' @param font_color Font color, hex code or name. Default is "black" (string).
+#' @param font_color Font color, hex code or name. Default is "inherit" (string).
 #'
-plot_league_information_table <- function(league_id, font_color = "black") {
+plot_league_information_table <- function(league_id, font_color = "inherit") {
   # Check if font_color is a string
   if (!is.character(font_color)) {
     # Error and inform user if not a string
@@ -37,6 +37,14 @@ plot_league_information_table <- function(league_id, font_color = "black") {
       js_dt <- paste0("function(settings, json) {$(this.api().table().body()).css({'color': '",  # nolint
                       font_color,
                       "'});$(this.api().table().header()).css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_info').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_filter').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_length').css({'color': '",
+                      font_color,
+                      "'});$('.dataTables_paginate').css({'color': '",
                       font_color,
                       "'})}")
       # If a data frame is returned, sort it by wins
@@ -68,8 +76,7 @@ plot_league_information_table <- function(league_id, font_color = "black") {
                                         "Fantasy Points For",
                                         "Fantasy Points Against"),
                            options = list(pageLength = 100,
-                                          initComplete = htmlwidgets::JS(js_dt),
-                                          dom = "t"),
+                                          initComplete = htmlwidgets::JS(js_dt)),
                            rownames = FALSE)
       # Format fantasy points (green bar with height based on points)
       fig_format1 <- DT::formatStyle(fig,

@@ -202,6 +202,39 @@ plot_league_dashboard <- function(league_id) {
                         shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "trending_players_table")) # nolint  
           )
         )
+      ),
+      # Create third tab (trending players)
+      shiny::tabPanel("Player Information", fluid = TRUE,
+        # Display trending players title
+        shiny::titlePanel(shiny::h1(htmltools::HTML(paste0("<b>Player Information</b>")), align = "center", style = "color:white")), # nolint
+        # Display white horizontal line
+        shiny::hr(style = "color:white"),
+        # Line break
+        shiny::br(),
+        # Create a fluid row to hold the label for the input buttons
+        shiny::fluidRow(
+          shiny::column(width = 12,
+                        shiny::h2(htmltools::HTML(paste0("<b>Players by High School State</b>")), align = "center", style = "color:white")), # nolint
+        ),
+        # Create a fluid row to hold trending players table
+        shiny::fluidRow(
+          # Display regular season ranking plot
+          shiny::column(width = 12,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "players_by_high_school_state")) # nolint  
+          )
+        ),
+        # Create a fluid row to hold the label for the input buttons
+        shiny::fluidRow(
+          shiny::column(width = 12,
+                        shiny::h2(htmltools::HTML(paste0("<b>General Player Information</b>")), align = "center", style = "color:white")), # nolint
+        ),
+        # Create a fluid row to hold trending players table
+        shiny::fluidRow(
+          # Display regular season ranking plot
+          shiny::column(width = 12,
+                        shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "general_players_table")) # nolint  
+          )
+        )
       )
     )
   )
@@ -244,7 +277,7 @@ plot_league_dashboard <- function(league_id) {
                                        title = "",
                                        tick_color = "#fff")
     })
-    # Render league information  table
+    # Render league information table
     output$league_information_table <- DT::renderDataTable({
       plot_league_information_table(league_id, font_color = "#fff")
     })
@@ -266,6 +299,14 @@ plot_league_dashboard <- function(league_id) {
       plot_trending_players_table(lookback_hours = lookback_hours(),
                                   limit = limit(),
                                   font_color = "#fff")
+    })
+    # Render players by high school state plot
+    output$players_by_high_school_state <- plotly::renderPlotly({
+      plot_nfl_player_high_school_state(title = "")
+    })
+    # Render trending players table
+    output$general_players_table <- DT::renderDataTable({
+      plot_nfl_player_data_table(font_color = "#fff")
     })
   }
   shiny::runApp(list(ui = ui, server = server), launch.browser = TRUE)
