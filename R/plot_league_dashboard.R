@@ -7,7 +7,7 @@
 #' Control + C on the keyboard.
 #'
 #' @return Returns a dashboard of the current league state.
-#' @author Nick Bultman, \email{njbultman74@@gmail.com}, January 2024
+#' @author Nick Bultman, \email{njbultman74@@gmail.com}, March 2024
 #' @keywords league dashboard plot
 #' @importFrom shiny fluidPage tabsetPanel tabPanel titlePanel hr br fluidRow column h2 h1 numericInput actionButton eventReactive runApp
 #' @importFrom shinyWidgets setBackgroundColor
@@ -25,7 +25,7 @@ plot_league_dashboard <- function(league_id) {
   # Obtain master plotting data frame from league ID
   master_df <- get_main_data(league_id)
   # If nothing is returned for master data frame, return nothing
-  # A message already informs user of error in plot_generate_master_data
+  # A message already informs user of error in get_main_data function
   # If data frame returned, store certain strings in variables
   league_name <- master_df$name[1]
   league_status <- master_df$status[1]
@@ -33,7 +33,6 @@ plot_league_dashboard <- function(league_id) {
   league_type <- master_df$season_type[1]
   league_id <- master_df$league_id[1]
   league_season <- master_df$season[1]
-
   # Create UI
   ui <- shiny::fluidPage(
     # Set background color
@@ -56,10 +55,10 @@ plot_league_dashboard <- function(league_id) {
           # Display league season
           shiny::column(width = 3,
             shiny::h2(htmltools::HTML(paste0("<b>Season: ", league_season, "</b>")), align = "center", style = "color:white")), # nolint
-          # Display league type
+          # Display season type
           shiny::column(width = 3,
             shiny::h2(htmltools::HTML(paste0("<b>Season Type: ", league_type, "</b>")), align = "center", style = "color:white")), # nolint
-          # Display league status
+          # Display season status
           shiny::column(width = 3,
             shiny::h2(htmltools::HTML(paste0("<b>Season Status: ", league_status, "</b>")), align = "center", style = "color:white")) # nolint
         ),
@@ -107,7 +106,7 @@ plot_league_dashboard <- function(league_id) {
           shiny::column(width = 12,
                         shiny::h2(htmltools::HTML(paste0("<b>Display Name Selection</b>")), style = "color:white")) # nolint
         ),
-        # Create a fluid row to hold display name input
+        # Create a fluid row to hold display name input button
         shiny::fluidRow(
           shiny::column(width = 12,
                         shiny::selectInput(inputId = "displaynameselection", # nolint
@@ -131,7 +130,7 @@ plot_league_dashboard <- function(league_id) {
           shiny::column(width = 6,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_for_plot")) # nolint  
           ),
-          # Display total fantasy points for plot
+          # Display total fantasy points against plot
           shiny::column(width = 6,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_against_plot")) # nolint  
           )
@@ -151,7 +150,7 @@ plot_league_dashboard <- function(league_id) {
           shiny::column(width = 6,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_fantasy_points_differential_plot")) # nolint  
           ),
-          # Display regular season ranking plot
+          # Display user waiver budget plot
           shiny::column(width = 6,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_waiver_budget_plot")) # nolint  
           )
@@ -165,15 +164,16 @@ plot_league_dashboard <- function(league_id) {
         shiny::hr(style = "color:white"),
         # Line break
         shiny::br(),
-        # Create a fluid row to hold the label for the input buttons
+        # Create a fluid row to hold the labels for the input buttons
         shiny::fluidRow(
           shiny::column(width = 3,
                         shiny::h2(htmltools::HTML(paste0("<b>Lookback Hours</b>")), style = "color:white")), # nolint
           shiny::column(width = 3,
           shiny::h2(htmltools::HTML(paste0("<b>Player Limit</b>")), style = "color:white")), # nolint
         ),
-        # Create a fluid row to hold trending players input
+        # Create a fluid row to hold trending players inputs
         shiny::fluidRow(
+          # Lookback hours input
           shiny::column(width = 3,
                         shiny::numericInput(inputId = "trendingplayerslookback_hours", # nolint
                                             label = "",
@@ -181,6 +181,7 @@ plot_league_dashboard <- function(league_id) {
                                             min = 1),
                         shiny::actionButton(inputId = "gentrendplayers",
                                             label = "Calculate")),
+          # Player limit input
           shiny::column(width = 3,
                         shiny::numericInput(inputId = "trendingplayerslimit",
                                             label = "",
@@ -190,47 +191,54 @@ plot_league_dashboard <- function(league_id) {
         ),
         # Create a fluid row to hold trending players plot
         shiny::fluidRow(
-          # Display regular season ranking plot
+          # Display trending players plot
           shiny::column(width = 12,
                         shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "trending_players_plot")) # nolint  
           )
         ),
         # Create a fluid row to hold trending players table
         shiny::fluidRow(
-          # Display regular season ranking plot
+          # Display trending players table
           shiny::column(width = 12,
                         shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "trending_players_table")) # nolint  
           )
         )
       ),
-      # Create third tab (trending players)
+      # Create fourth tab (player information)
       shiny::tabPanel("Player Information", fluid = TRUE,
-        # Display trending players title
+        # Display player information title
         shiny::titlePanel(shiny::h1(htmltools::HTML(paste0("<b>Player Information</b>")), align = "center", style = "color:white")), # nolint
         # Display white horizontal line
         shiny::hr(style = "color:white"),
         # Line break
         shiny::br(),
-        # Create a fluid row to hold the label for the input buttons
+        # Create a fluid row to hold the labels for the plots
         shiny::fluidRow(
-          shiny::column(width = 12,
-                        shiny::h2(htmltools::HTML(paste0("<b>Players by High School State</b>")), align = "center", style = "color:white")), # nolint
-        ),
-        # Create a fluid row to hold trending players table
-        shiny::fluidRow(
-          # Display regular season ranking plot
-          shiny::column(width = 12,
-                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "players_by_high_school_state")) # nolint  
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Players by High School State</b>")), align = "center", style = "color:white") # nolint
+          ),
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Players by College</b>")), align = "center", style = "color:white") # nolint
           )
         ),
-        # Create a fluid row to hold the label for the input buttons
+        # Create a fluid row to hold player information plots
+        shiny::fluidRow(
+          # Players by high school state plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "players_by_high_school_state")) # nolint  
+          ),
+          # Players by college cplot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "players_by_college")) # nolint 
+          )
+        ),
+        # Create a fluid row to hold the label for general player information
         shiny::fluidRow(
           shiny::column(width = 12,
                         shiny::h2(htmltools::HTML(paste0("<b>General Player Information</b>")), align = "center", style = "color:white")), # nolint
         ),
-        # Create a fluid row to hold trending players table
+        # Create a fluid row to hold general player information table
         shiny::fluidRow(
-          # Display regular season ranking plot
           shiny::column(width = 12,
                         shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "general_players_table")) # nolint  
           )
@@ -240,7 +248,7 @@ plot_league_dashboard <- function(league_id) {
   )
   # Create server
   server <- function(input, output, session) {
-    # Render league information table
+    # Render league streaks table
     output$league_streaks_table <- DT::renderDataTable({
       plot_league_streaks_table(league_id, font_color = "#fff")
     })
@@ -248,7 +256,7 @@ plot_league_dashboard <- function(league_id) {
     output$regular_season_rankings_plot <- plotly::renderPlotly({
       plot_regular_season_rankings(league_id, title = "", tick_color = "#fff")
     })
-    # Render regular season league rankings plot
+    # Render user waiver budget plot
     output$user_waiver_budget_plot <- plotly::renderPlotly({
       plot_user_waiver_budget(league_id,
                               display_name = input$displaynameselection,
@@ -270,7 +278,7 @@ plot_league_dashboard <- function(league_id) {
                                        title = "",
                                        tick_color = "#fff")
     })
-    # Render user fantasy points against plot
+    # Render user fantasy points differential plot
     output$user_fantasy_points_differential_plot <- plotly::renderPlotly({
       plot_user_fantasy_points_differential(league_id,
                                        display_name = input$displaynameselection, # nolint
@@ -285,9 +293,11 @@ plot_league_dashboard <- function(league_id) {
     lookback_hours <- shiny::eventReactive(input$gentrendplayers, {
       input$trendingplayerslookback_hours
     })
+    # Store trending player limit only after user clicks on action button
     limit <- shiny::eventReactive(input$gentrendplayers, {
       input$trendingplayerslimit
     })
+    # Render trending players plot only after user clicks on action button
     output$trending_players_plot <- plotly::renderPlotly({
       plot_trending_players(lookback_hours = lookback_hours(), # nolint
                             limit = limit(),
@@ -304,7 +314,12 @@ plot_league_dashboard <- function(league_id) {
     output$players_by_high_school_state <- plotly::renderPlotly({
       plot_nfl_player_high_school_state(title = "")
     })
-    # Render trending players table
+    # Render players by college plot
+    output$players_by_college <- plotly::renderPlotly({
+      plot_nfl_top_colleges(title = "",
+                            tick_color = "#fff")
+    })
+    # Render general players table
     output$general_players_table <- DT::renderDataTable({
       plot_nfl_player_data_table(font_color = "#fff")
     })

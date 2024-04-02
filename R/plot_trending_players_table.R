@@ -2,10 +2,10 @@
 #'
 #' Given the number of hours to look back, and a limit of
 #' how many players to return, display a figure showing the
-#' top additions and drops in a table format.
+#' top additions and drops in a table.
 #'
 #' @return Returns a plot containing information (name and
-#'         count) about the NFL trending players.
+#'         count) about the trending NFL players.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, February 2024
 #' @keywords players trending
 #' @importFrom dplyr left_join bind_rows
@@ -19,7 +19,7 @@
 #' \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10, font_color = "white")}
 #'
 #' @param lookback_hours Number of hours to look back. Default is 24 (numeric).
-#' @param limit Number of results you would like. Default is 10, max is 50 (numeric).
+#' @param limit Number of players returned for add/drop. Default is 10, max is 50 (numeric).
 #' @param font_color Font color, name or hex. Default is "inherit" (string).
 #'
 plot_trending_players_table <- function(lookback_hours = 24,

@@ -21,15 +21,15 @@ plot_user_waiver_budget(
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
 
-\item{budget_total_line_color}{Font color, name or hex, for total budget line (string).}
+\item{budget_total_line_color}{Font color, name or hex (string).}
 }
 \value{
 Returns a plot containing the waiver budget status.
 }
 \description{
 Given the league ID and display name, plot the current waiver budget
-(meaning total waiver budget available versus how much the user has
-remaining).
+for the user (meaning total waiver budget available versus how much
+the user has remaining).
 }
 \examples{
 \dontrun{plot_user_waiver_budget(688281863499907072, "njbultman74")}

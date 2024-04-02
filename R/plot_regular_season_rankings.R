@@ -25,13 +25,13 @@ plot_regular_season_rankings <- function(league_id,
   # Check to see if title and tick_color both strings
   if (!is.character(title) || !is.character(tick_color)) {
     # Error and inform user if both not strings
-    stop("Title and tick_color must both be strings.")
+    stop("Title and tick color must both be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
     # If nothing is returned for master data frame, return nothing
-    # A message already informs user of error in plot_generate_master_data
-    # Generate plot of regular season rankings
+    # A message already informs user of error in get_main_data function
+    # Generate base plot
     fig <- plotly::plot_ly(data = master_df,
                            x = ~rank_fpts,
                            y = ~stats::reorder(display_name, -rank_fpts),
@@ -44,7 +44,7 @@ plot_regular_season_rankings <- function(league_id,
                                          line = list(color = "rgb(0 ,0, 0)",
                                                      width = 1.5)),
                            orientation = "h")
-    # Style plot of regular season rankings
+    # Style plot
     fig_fin <- plotly::layout(fig,
                               title = title,
                               yaxis = list(title = "",

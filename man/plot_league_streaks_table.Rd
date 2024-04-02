@@ -17,7 +17,7 @@ Returns a table containing display names and their streaks.
 \description{
 Given the league ID, generate a table showing display names
 and their associated streaks (2W, 5L, etc.). Note that the font
-color for the streaks are currently at zero or greater = green 
+color for the streaks are currently at zero or greater = green
 and L = red. The font color argument is used for the headers.
 }
 \examples{

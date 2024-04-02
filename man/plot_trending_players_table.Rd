@@ -13,18 +13,18 @@ plot_trending_players_table(
 \arguments{
 \item{lookback_hours}{Number of hours to look back. Default is 24 (numeric).}
 
-\item{limit}{Number of results you would like. Default is 10, max is 50 (numeric).}
+\item{limit}{Number of players returned for add/drop. Default is 10, max is 50 (numeric).}
 
 \item{font_color}{Font color, name or hex. Default is "inherit" (string).}
 }
 \value{
 Returns a plot containing information (name and
-        count) about the NFL trending players.
+        count) about the trending NFL players.
 }
 \description{
 Given the number of hours to look back, and a limit of
 how many players to return, display a figure showing the
-top additions and drops in a table format.
+top additions and drops in a table.
 }
 \examples{
 \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10)}

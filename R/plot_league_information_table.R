@@ -21,9 +21,9 @@
 #' @param font_color Font color, hex code or name. Default is "inherit" (string).
 #'
 plot_league_information_table <- function(league_id, font_color = "inherit") {
-  # Check if font_color is a string
+  # Check if font color is a string
   if (!is.character(font_color)) {
-    # Error and inform user if not a string
+    # Error and inform user if font color is not a string
     stop("Font color argument must be a string.")
   } else {
     # Obtain master plotting data frame from league ID
@@ -33,7 +33,7 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
     if (is.null(master_df)) {
       return(NULL)
     } else {
-      # Generate javascript based on font_color specified
+      # Generate javascript based on font_color specified for table
       js_dt <- paste0("function(settings, json) {$(this.api().table().body()).css({'color': '",  # nolint
                       font_color,
                       "'});$(this.api().table().header()).css({'color': '",
@@ -50,6 +50,7 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
       # If a data frame is returned, sort it by wins
       master_df_sort <- dplyr::arrange(master_df, -master_df$wins)
       # Generate breaks & colors for wins & losses
+      # Color scheme is opposite of wins for losses (both RdYlGn for scale)
       brkswins <- stats::quantile(master_df_sort$wins,
                                   probs = seq(0.05, 0.95, 0.05),
                                   na.rm = TRUE)
@@ -76,9 +77,9 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
                                         "Fantasy Points For",
                                         "Fantasy Points Against"),
                            options = list(pageLength = 100,
-                                          initComplete = htmlwidgets::JS(js_dt)),
+                                          initComplete = htmlwidgets::JS(js_dt)), # nolint
                            rownames = FALSE)
-      # Format fantasy points (green bar with height based on points)
+      # Format fantasy points (light green bar with height based on points)
       fig_format1 <- DT::formatStyle(fig,
                                      "fpts_total",
                                      background = DT::styleColorBar(range(master_df_sort$fpts_total), # nolint

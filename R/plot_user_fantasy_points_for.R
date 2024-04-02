@@ -23,17 +23,17 @@ plot_user_fantasy_points_for <- function(league_id,
                                          display_name,
                                          title = "<b>Total Fantasy Points For by User</b>", # nolint
                                          tick_color = "black") {
-  # Check to see if title, display_name, and tick_color are strings
+  # Check to see if title, display name, and tick color are strings
   if (!is.character(title) || !is.character(display_name) || !is.character(tick_color)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display_name, and tick_color must all be strings.")
+    stop("Title, display name, and tick color must all be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
     # If nothing is returned for master data frame, return nothing
     # A message already informs user of error in get_main_data function
     # Create a vector for the colors
-    master_df$color <- ifelse(master_df$display_name == display_name, 
+    master_df$color <- ifelse(master_df$display_name == display_name,
                               "#f68383", 
                               "lightgrey")
     # Generate plot of total fantasy points for

@@ -26,6 +26,10 @@ plot_trending_players <- function(lookback_hours = 24,
                                   limit = 10,
                                   tick_color = "black",
                                   title = "Trending Adds/Drops") {
+  # Verify that tick color and title are strings
+  if (class(tick_color) != "character" || class(title) != "character") {
+    stop("Title and tick color must be strings.")
+  }
   # Get trending additions
   add_df <- get_trending_players(sport = "nfl",
                                  type = "add",
@@ -80,7 +84,7 @@ plot_trending_players <- function(lookback_hours = 24,
                                text = ~scales::comma(count),
                                textposition = "auto",
                                type = "bar",
-                               marker = list(color = "rgb(255, 0, 0)",
+                               marker = list(color = "#f68383",
                                              line = list(color = "rgb(0 ,0, 0)",
                                                          width = 1.5)),
                                name = "Drops")

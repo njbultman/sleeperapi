@@ -2,7 +2,7 @@
 #'
 #' This function will generate a table containing general
 #' information (name, age, college, etc.) concerning all
-#' the NFL players that Sleeper can get data on.
+#' the NFL players that Sleeper has data on.
 #'
 #' @return Returns a plot containing information (name and
 #'         count) about the NFL trending players.

@@ -36,7 +36,7 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
   # Get player high school state
   player_data$high_school_state <- stringr::str_extract(player_data$high_school,
                                                         "\\(.*?\\)")
-  # Remove parentheses
+  # Remove parentheses from high school state column
   player_data$high_school_state <- stringr::str_replace(player_data$high_school_state, # nolint: line_length_linter.
                                                         pattern = "\\(",
                                                         replacement = "")
@@ -56,7 +56,7 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
                              locations = ~high_school_state,
                              color = ~n,
                              colors = "Greens")
-  # Polish layout
+  # Refine layout
   fig_3 <- plotly::layout(fig_2,
                           title = title,
                           geo = list(

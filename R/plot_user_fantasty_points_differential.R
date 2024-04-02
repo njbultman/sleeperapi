@@ -28,7 +28,7 @@ plot_user_fantasy_points_differential <- function(league_id,
   # Check to see if title, display_name, and tick_color are strings
   if (!is.character(title) || !is.character(display_name) || !is.character(tick_color)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display_name, and tick_color must all be strings.")
+    stop("Title, display name, and tick color must all be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -48,9 +48,9 @@ plot_user_fantasy_points_differential <- function(league_id,
                                         -display_name)
     # Color the metrics
     user_df_long$color <- dplyr::case_when(user_df_long$name == "fpts_total" ~ "lightgreen", # nolint
-                                           user_df_long$name == "fpts_against_total" ~ "red", # nolint
+                                           user_df_long$name == "fpts_against_total" ~ "#f68383", # nolint
                                            user_df_long$name == "fpts_differential" & user_df_long$value >= 0 ~ "lightgreen", # nolint
-                                           TRUE ~ "red")
+                                           TRUE ~ "#f68383")
     # Rename metrics
     user_df_long$name[user_df_long$name == "fpts_total"] <- "Total Fantasy Points" # nolint
     user_df_long$name[user_df_long$name == "fpts_against_total"] <- "Total Fantasy Points Against" # nolint

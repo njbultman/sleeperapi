@@ -23,10 +23,10 @@ plot_user_fantasy_points_against <- function(league_id,
                                              display_name,
                                              title = "<b>Total Fantasy Points Against by User</b>", # nolint
                                              tick_color = "black") {
-  # Check to see if title, display_name, and tick_color are strings
+  # Check to see if title, display name, and tick color are strings
   if (!is.character(title) || !is.character(display_name) || !is.character(tick_color)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display_name, and tick_color must all be strings.")
+    stop("Title, display name, and tick color must all be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -36,7 +36,7 @@ plot_user_fantasy_points_against <- function(league_id,
     master_df$color <- ifelse(master_df$display_name == display_name, 
                               "#f68383", 
                               "lightgrey")
-    # Generate plot of total fantasy points for
+    # Generate plot of total fantasy points against
     fig <- plotly::plot_ly(data = master_df,
                            x = ~stats::reorder(display_name, -fpts_against_total), # nolint
                            y = ~fpts_against_total,

@@ -2,7 +2,7 @@
 #'
 #' Given the league ID, generate a table showing display names
 #' and their associated streaks (2W, 5L, etc.). Note that the font
-#' color for the streaks are currently at zero or greater = green 
+#' color for the streaks are currently at zero or greater = green
 #' and L = red. The font color argument is used for the headers.
 #'
 #' @return Returns a table containing display names and their streaks.
@@ -64,7 +64,7 @@ plot_league_streaks_table <- function(league_id, font_color = "inherit") {
       fig <- DT::datatable(master_df_pivot,
                            escape = FALSE,
                            options = list(pageLength = 100,
-                                          initComplete = htmlwidgets::JS(js_dt)),
+                                          initComplete = htmlwidgets::JS(js_dt)), # nolint
                            rownames = FALSE)
       return(fig)
     }

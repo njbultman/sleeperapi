@@ -16,7 +16,7 @@ Returns a plot containing information (name and
 \description{
 This function will generate a table containing general
 information (name, age, college, etc.) concerning all
-the NFL players that Sleeper can get data on.
+the NFL players that Sleeper has data on.
 }
 \examples{
 \dontrun{plot_nfl_player_data_table()}

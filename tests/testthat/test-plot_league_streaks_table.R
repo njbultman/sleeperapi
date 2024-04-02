@@ -6,3 +6,8 @@ test_that("ensure font_color argument is a string", {
                                          font_color = 2),
                "Font color argument must be a string.")
 })
+# Test 2: good function call returns a data table
+test_that("good function call returns a data table", {
+  expect_equal(class(plot_league_streaks_table(688281863499907072)),
+               c("datatables", "htmlwidget"))
+})
