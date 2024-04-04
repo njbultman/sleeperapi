@@ -25,7 +25,7 @@ get_sport_state <- function(sport) {
   # Check if returned object is NULL
   if(is.null(x)) {
     # If NULL, inform user and return nothing
-    message("No data was returned. Was the sport correctly specified according to the API documentation?")
+    stop("No data was returned. Was the sport correctly specified according to the API documentation?")
   } else {
     # If not NULL, return the object (list)
     return(x)
