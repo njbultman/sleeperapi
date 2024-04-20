@@ -21,7 +21,7 @@
 #' @param font_color Font color, hex code or name. Default is "inherit" (string).
 #' @param win_loss_fill String describing the brewer.pal color palette selection. Can see all options through RColorBrewer::display.brewer.all() (string).
 #' @param fpts_for_fill Bar color, name or hex, for each fantasy points for cell by team (string).
-#' @param fpts_for_fill Bar color, name or hex, for each fantasy points against cell by team (string).
+#' @param fpts_against_fill Bar color, name or hex, for each fantasy points against cell by team (string).
 #'
 plot_league_information_table <- function(league_id,
                                           font_color = "inherit",

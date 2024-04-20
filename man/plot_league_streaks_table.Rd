@@ -15,6 +15,10 @@ plot_league_streaks_table(
 \item{league_id}{League ID generated from Sleeper (numeric).}
 
 \item{font_color}{Header font color, hex code or name. Default is "inherit" (string).}
+
+\item{win_streak_font_color}{Font color, hex code or name, for teams with winning streak (string).}
+
+\item{lose_streak_font_color}{Font color, hex code or name, for teams with losing streak (string).}
 }
 \value{
 Returns a table containing display names and their streaks.

@@ -19,7 +19,9 @@ plot_league_information_table(
 
 \item{win_loss_fill}{String describing the brewer.pal color palette selection. Can see all options through RColorBrewer::display.brewer.all() (string).}
 
-\item{fpts_for_fill}{Bar color, name or hex, for each fantasy points against cell by team (string).}
+\item{fpts_for_fill}{Bar color, name or hex, for each fantasy points for cell by team (string).}
+
+\item{fpts_against_fill}{Bar color, name or hex, for each fantasy points against cell by team (string).}
 }
 \value{
 Returns a table containing team names and
