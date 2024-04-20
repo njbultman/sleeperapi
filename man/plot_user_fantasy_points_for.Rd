@@ -8,7 +8,9 @@ plot_user_fantasy_points_for(
   league_id,
   display_name,
   title = "<b>Total Fantasy Points For by User</b>",
-  tick_color = "black"
+  tick_color = "black",
+  user_fill = "#f68383",
+  other_fill = "lightgrey"
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ plot_user_fantasy_points_for(
 \item{title}{Title for plot, which can include HTML formatting (string).}
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
+
+\item{user_fill}{Bar color, name or hex, for display name specified (string).}
+
+\item{other_fill}{Bar color, name or hex, for other display names (string).}
 }
 \value{
 Returns a plot containing the total fantasy points for by user.

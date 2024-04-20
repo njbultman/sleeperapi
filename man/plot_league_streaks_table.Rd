@@ -4,7 +4,12 @@
 \alias{plot_league_streaks_table}
 \title{Plot League Streaks Table}
 \usage{
-plot_league_streaks_table(league_id, font_color = "inherit")
+plot_league_streaks_table(
+  league_id,
+  font_color = "inherit",
+  win_streak_font_color = "lightgreen",
+  lose_streak_font_color = "#f68383"
+)
 }
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}

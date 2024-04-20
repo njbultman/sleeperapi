@@ -11,23 +11,25 @@
 #' @export
 #' @examples
 #' \dontrun{plot_user_waiver_budget(688281863499907072, "njbultman74")}
-#' \dontrun{plot_user_waiver_budget(688281863499907072, "datcommish", title = "test", tick_color = "green", budget_total_line_color = "red")}
+#' \dontrun{plot_user_waiver_budget(688281863499907072, "datcommish", title = "Test")}
 #'
 #' @param league_id League ID assigned by Sleeper (numeric).
 #' @param display_name Display name created by user (string).
 #' @param title Title for plot, which can include HTML formatting (string).
 #' @param tick_color Font color, name or hex, for display names (string).
 #' @param budget_total_line_color Font color, name or hex (string).
+#' @param fill_color Fill color for bar, name or hex (string).
 #'
 plot_user_waiver_budget <- function(league_id,
                                     display_name,
                                     title = "<b> Waiver Budget</b>", # nolint
                                     tick_color = "black",
-                                    budget_total_line_color = "black") {
+                                    budget_total_line_color = "black",
+                                    fill_color = "green") {
   # Check to see if title, display_name, tick_color, and budget line color are strings
-  if (!is.character(title) || !is.character(display_name) || !is.character(tick_color) || !is.character(budget_total_line_color)) { # nolint
+  if (!is.character(title) || !is.character(display_name) || !is.character(tick_color) || !is.character(budget_total_line_color) || !is.character(fill_color)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display name, tick color, and budget line color must all be strings.")
+    stop("Title, display name, tick color, budget line color, and fill color must all be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -45,7 +47,7 @@ plot_user_waiver_budget <- function(league_id,
                            textposition = "auto",
                            insidetextanchor = "middle",
                            type = "bar",
-                           marker = list(color = "#00ff00",
+                           marker = list(color = fill_color,
                                          line = list(color = "black",
                                                      width = 3)))
     # Style plot of regular season rankings

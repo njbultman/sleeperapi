@@ -8,7 +8,9 @@ plot_user_fantasy_points_differential(
   league_id,
   display_name,
   title = paste0("<b>Fantasy Point Differential: ", display_name, "</b>"),
-  tick_color = "black"
+  tick_color = "black",
+  fill_points_for = "lightgreen",
+  fill_points_against = "#f68383"
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ plot_user_fantasy_points_differential(
 \item{title}{Title for plot, which can include HTML formatting (string).}
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
+
+\item{fill_points_for}{Bar color, name or hex, for bar containing fantasy points for (string).}
+
+\item{fill_points_against}{Bar color, name or hex, for bar containing fantasy points against (string).}
 }
 \value{
 Returns a plot containing the total fantasy points

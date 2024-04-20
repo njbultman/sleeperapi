@@ -4,12 +4,22 @@
 \alias{plot_league_information_table}
 \title{Plot League Information Table}
 \usage{
-plot_league_information_table(league_id, font_color = "inherit")
+plot_league_information_table(
+  league_id,
+  font_color = "inherit",
+  win_loss_fill = "RdYlGn",
+  fpts_for_fill = "lightgreen",
+  fpts_against_fill = "#f68383"
+)
 }
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}
 
 \item{font_color}{Font color, hex code or name. Default is "inherit" (string).}
+
+\item{win_loss_fill}{String describing the brewer.pal color palette selection. Can see all options through RColorBrewer::display.brewer.all() (string).}
+
+\item{fpts_for_fill}{Bar color, name or hex, for each fantasy points against cell by team (string).}
 }
 \value{
 Returns a table containing team names and

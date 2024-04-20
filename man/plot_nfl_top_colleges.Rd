@@ -5,17 +5,20 @@
 \title{Plot NFL Player College Information}
 \usage{
 plot_nfl_top_colleges(
-  title = "<b>NFL Players by High School State</b>",
+  title = "<b>NFL Players by College</b>",
   tick_color = "black",
-  number = 10
+  number = 10,
+  fill_color = "black"
 )
 }
 \arguments{
-\item{title}{Title for plot. Default is "NFL Players by High School State" (string).}
+\item{title}{Title for plot (string).}
 
-\item{tick_color}{Color for tick labels. Default is black (string).}
+\item{tick_color}{Color for tick labels (string).}
 
-\item{number}{Number of colleges to show. Default is 10 (numeric).}
+\item{number}{Number of colleges to show (numeric).}
+
+\item{fill_color}{Bar color, number or hex (string).}
 }
 \value{
 Returns a plot containing information about counts

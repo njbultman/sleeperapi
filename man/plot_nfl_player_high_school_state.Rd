@@ -5,11 +5,17 @@
 \title{Plot NFL Player High School State Information}
 \usage{
 plot_nfl_player_high_school_state(
-  title = "<b>NFL Players by High School State</b>"
+  title = "<b>NFL Players by High School State</b>",
+  high_fill = "lightgreen",
+  low_fill = "white"
 )
 }
 \arguments{
-\item{title}{Title for plot. Default is "NFL Players by High School State" (string).}
+\item{title}{Title for plot (string).}
+
+\item{high_fill}{Fill color, name or hex, for high value states (string).}
+
+\item{low_fill}{Fill color, name or hex, for low value states (string).}
 }
 \value{
 Returns a plot containing information about counts
@@ -17,8 +23,8 @@ Returns a plot containing information about counts
 }
 \description{
 This function will generate a plot showing counts of NFL
-players by high school state. More color means more NFL players
-are from that state.
+players by high school state. Colors can be manually defined
+for high and low values of each state's count.
 }
 \examples{
 \dontrun{plot_nfl_player_high_school_state()}

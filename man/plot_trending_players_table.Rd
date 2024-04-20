@@ -7,7 +7,9 @@
 plot_trending_players_table(
   lookback_hours = 24,
   limit = 10,
-  font_color = "inherit"
+  font_color = "inherit",
+  drop_fill = "#f68383",
+  add_fill = "lightgreen"
 )
 }
 \arguments{
@@ -16,6 +18,10 @@ plot_trending_players_table(
 \item{limit}{Number of players returned for add/drop. Default is 10, max is 50 (numeric).}
 
 \item{font_color}{Font color, name or hex. Default is "inherit" (string).}
+
+\item{drop_fill}{Bar color, name or hex, for drops (string).}
+
+\item{add_fill}{Bar color, name or hex, for adds (string).}
 }
 \value{
 Returns a plot containing information (name and

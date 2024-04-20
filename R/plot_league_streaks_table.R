@@ -19,11 +19,14 @@
 #' @param league_id League ID generated from Sleeper (numeric).
 #' @param font_color Header font color, hex code or name. Default is "inherit" (string).
 #'
-plot_league_streaks_table <- function(league_id, font_color = "inherit") {
+plot_league_streaks_table <- function(league_id,
+                                      font_color = "inherit",
+                                      win_streak_font_color = "lightgreen",
+                                      lose_streak_font_color = "#f68383") {
   # Check if font_color is a string
-  if (!is.character(font_color)) {
+  if (!is.character(font_color) || !is.character(win_streak_font_color) || !is.character(lose_streak_font_color)) { # nolint
     # Error and inform user if not a string
-    stop("Font color argument must be a string.")
+    stop("Font color and win/loss streak font color arguments must be strings.")
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -50,10 +53,10 @@ plot_league_streaks_table <- function(league_id, font_color = "inherit") {
       master_df_sort <- dplyr::arrange(master_df, -master_df$wins)
       # Generate coloring for streaks
       master_df_sort$streak_format <- ifelse(master_df_sort$streak_ranking < 0,
-                                             paste0('<font color="#ee5050">',
+                                             paste0('<font color="', lose_streak_font_color, '">', # nolint
                                                     master_df_sort$streak,
                                                     "</font>"),
-                                             paste0('<font color="#00ff00">',
+                                             paste0('<font color="',  win_streak_font_color, '">', # nolint
                                                     master_df_sort$streak,
                                                     "</font>"))
       master_df_sort_selection <- master_df_sort[, c("display_name", "streak_format")] # nolint
@@ -63,7 +66,7 @@ plot_league_streaks_table <- function(league_id, font_color = "inherit") {
       # Generate and return table
       fig <- DT::datatable(master_df_pivot,
                            escape = FALSE,
-                           options = list(pageLength = 100,
+                           options = list(pageLength = 10,
                                           initComplete = htmlwidgets::JS(js_dt)), # nolint
                            rownames = FALSE)
       return(fig)

@@ -3,7 +3,7 @@
 #' Given the league ID, generate a dashboard with various
 #' plots/tables of the current league. Note that since this
 #' is a dashboard, your R session will continuously run until
-#' the console is stopped. This can be achieved by pressing
+#' the console is stopped. Stoppage can be achieved by pressing
 #' Control + C on the keyboard.
 #'
 #' @return Returns a dashboard of the current league state.
@@ -25,6 +25,10 @@ plot_league_dashboard <- function(league_id) {
   # Obtain master plotting data frame from league ID
   master_df <- get_main_data(league_id)
   # If nothing is returned for master data frame, return nothing
+  # Ensure dashboard not created by having additional NULL check
+  if (is.null(master_df)) {
+    stop("Dashboard generation halted due to invalid league ID.")
+  }
   # A message already informs user of error in get_main_data function
   # If data frame returned, store certain strings in variables
   league_name <- master_df$name[1]

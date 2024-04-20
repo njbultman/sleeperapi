@@ -16,16 +16,18 @@
 #' \dontrun{plot_nfl_player_college()}
 #' \dontrun{plot_nfl_player_college(title = "TestTitle", tick_color = "green", number = 5)}
 #'
-#' @param title Title for plot. Default is "NFL Players by High School State" (string).
-#' @param tick_color Color for tick labels. Default is black (string).
-#' @param number Number of colleges to show. Default is 10 (numeric).
+#' @param title Title for plot (string).
+#' @param tick_color Color for tick labels (string).
+#' @param number Number of colleges to show (numeric).
+#' @param fill_color Bar color, number or hex (string).
 #'
-plot_nfl_top_colleges <- function(title = "<b>NFL Players by High School State</b>", # nolint
+plot_nfl_top_colleges <- function(title = "<b>NFL Players by College</b>", # nolint
                                   tick_color = "black",
-                                  number = 10) {
-  # Check if title and tick_color arguments are strings (throw error if not)
-  if (class(title) != "character" || class(tick_color) != "character") {
-    stop("Title and tick color arguments must be strings.")
+                                  number = 10,
+                                  fill_color = "black") {
+  # Check if title, fill_color and tick_color arguments are strings (throw error if not) # nolint
+  if (class(title) != "character" || class(tick_color) != "character" || class(fill_color) != "character") { # nolint
+    stop("Title, tick color, and fill color arguments must be strings.")
   }
   # Check if number argument is numeric (throw error if not)
   if (class(number) != "numeric") {
@@ -54,7 +56,7 @@ plot_nfl_top_colleges <- function(title = "<b>NFL Players by High School State</
                          text = ~n,
                          textposition = "auto",
                          type = "bar",
-                         marker = list(color = "rgb(144, 238, 144)",
+                         marker = list(color = fill_color,
                                        line = list(color = "rgb(0 ,0, 0)",
                                                    width = 1.5)))
   # Style plot

@@ -19,12 +19,19 @@
 #'
 #' @param league_id League ID generated from Sleeper (numeric).
 #' @param font_color Font color, hex code or name. Default is "inherit" (string).
+#' @param win_loss_fill String describing the brewer.pal color palette selection. Can see all options through RColorBrewer::display.brewer.all() (string).
+#' @param fpts_for_fill Bar color, name or hex, for each fantasy points for cell by team (string).
+#' @param fpts_for_fill Bar color, name or hex, for each fantasy points against cell by team (string).
 #'
-plot_league_information_table <- function(league_id, font_color = "inherit") {
+plot_league_information_table <- function(league_id,
+                                          font_color = "inherit",
+                                          win_loss_fill = "RdYlGn",
+                                          fpts_for_fill = "lightgreen",
+                                          fpts_against_fill = "#f68383") {
   # Check if font color is a string
-  if (!is.character(font_color)) {
+  if (!is.character(font_color) || !is.character(win_loss_fill) || !is.character(fpts_for_fill) || !is.character(fpts_against_fill)) { # nolint
     # Error and inform user if font color is not a string
-    stop("Font color argument must be a string.")
+    stop("Font color, win/loss color, and fantasy points for/against arguments must be strings.") # nolint
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -54,11 +61,11 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
       brkswins <- stats::quantile(master_df_sort$wins,
                                   probs = seq(0.05, 0.95, 0.05),
                                   na.rm = TRUE)
-      clrswins <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = "RdYlGn", n = 11))(length(brkswins) + 1) # nolint
+      clrswins <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = win_loss_fill, n = 11))(length(brkswins) + 1) # nolint
       brkslosses <- stats::quantile(master_df_sort$losses,
                                     probs = seq(0.05, 0.95, 0.05),
                                     na.rm = TRUE)
-      clrslosses <- rev(grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = "RdYlGn", n = 11))(length(brkslosses) + 1)) # nolint
+      clrslosses <- rev(grDevices::colorRampPalette(RColorBrewer::brewer.pal(name = win_loss_fill, n = 11))(length(brkslosses) + 1)) # nolint
       # Create base table
       fig <- DT::datatable(master_df_sort[, c("team_name",
                                               "display_name",
@@ -83,7 +90,7 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
       fig_format1 <- DT::formatStyle(fig,
                                      "fpts_total",
                                      background = DT::styleColorBar(range(master_df_sort$fpts_total), # nolint
-                                                                    "lightgreen"), # nolint
+                                                                    fpts_for_fill), # nolint
                                      backgroundSize = "98% 88%",
                                      backgroundRepeat = "no-repeat",
                                      backgroundPosition = "center")
@@ -91,7 +98,7 @@ plot_league_information_table <- function(league_id, font_color = "inherit") {
       fig_format2 <- DT::formatStyle(fig_format1,
                                      "fpts_against_total",
                                      background = DT::styleColorBar(range(master_df_sort$fpts_total), # nolint
-                                                                    "#ee5050"),
+                                                                    fpts_against_fill), # nolint
                                      backgroundSize = "98% 88%",
                                      backgroundRepeat = "no-repeat",
                                      backgroundPosition = "center")

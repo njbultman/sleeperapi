@@ -20,15 +20,19 @@
 #' @param display_name Display name created by user (string).
 #' @param title Title for plot, which can include HTML formatting (string).
 #' @param tick_color Font color, name or hex, for display names (string).
+#' @param fill_points_for Bar color, name or hex, for bar containing fantasy points for (string).
+#' @param fill_points_against Bar color, name or hex, for bar containing fantasy points against (string).
 #'
 plot_user_fantasy_points_differential <- function(league_id,
                                                   display_name,
                                                   title = paste0("<b>Fantasy Point Differential: ", display_name, "</b>"), # nolint
-                                                  tick_color = "black") {
+                                                  tick_color = "black",
+                                                  fill_points_for = "lightgreen", # nolint
+                                                  fill_points_against = "#f68383") { # nolint
   # Check to see if title, display_name, and tick_color are strings
-  if (!is.character(title) || !is.character(display_name) || !is.character(tick_color)) { # nolint
+  if (!is.character(title) || !is.character(display_name) || !is.character(tick_color) || !is.character(fill_points_for) || !is.character(fill_points_against)) { # nolint
     # Error and inform user if all are not strings
-    stop("Title, display name, and tick color must all be strings.")
+    stop("Title, display name, tick color, fill points for, and fill points against must all be strings.") # nolint
   } else {
     # Obtain master plotting data frame from league ID
     master_df <- get_main_data(league_id)
@@ -47,10 +51,10 @@ plot_user_fantasy_points_differential <- function(league_id,
     user_df_long <- tidyr::pivot_longer(user_df_subset,
                                         -display_name)
     # Color the metrics
-    user_df_long$color <- dplyr::case_when(user_df_long$name == "fpts_total" ~ "lightgreen", # nolint
-                                           user_df_long$name == "fpts_against_total" ~ "#f68383", # nolint
-                                           user_df_long$name == "fpts_differential" & user_df_long$value >= 0 ~ "lightgreen", # nolint
-                                           TRUE ~ "#f68383")
+    user_df_long$color <- dplyr::case_when(user_df_long$name == "fpts_total" ~ fill_points_for, # nolint
+                                           user_df_long$name == "fpts_against_total" ~ fill_points_against, # nolint
+                                           user_df_long$name == "fpts_differential" & user_df_long$value >= 0 ~ fill_points_for, # nolint
+                                           TRUE ~ fill_points_against)
     # Rename metrics
     user_df_long$name[user_df_long$name == "fpts_total"] <- "Total Fantasy Points" # nolint
     user_df_long$name[user_df_long$name == "fpts_against_total"] <- "Total Fantasy Points Against" # nolint
@@ -63,7 +67,7 @@ plot_user_fantasy_points_differential <- function(league_id,
                            textposition = "auto",
                            insidetextanchor = "middle",
                            type = "bar",
-                           orientation = 'h',
+                           orientation = "h",
                            marker = list(color = user_df_long$color,
                                          line = list(color = "black",
                                                      width = 3)))

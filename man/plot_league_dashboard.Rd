@@ -16,7 +16,7 @@ Returns a dashboard of the current league state.
 Given the league ID, generate a dashboard with various
 plots/tables of the current league. Note that since this
 is a dashboard, your R session will continuously run until
-the console is stopped. This can be achieved by pressing
+the console is stopped. Stoppage can be achieved by pressing
 Control + C on the keyboard.
 }
 \examples{

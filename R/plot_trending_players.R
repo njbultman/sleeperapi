@@ -19,16 +19,20 @@
 #'
 #' @param lookback_hours Number of hours to look back (numeric). Default is 24
 #' @param limit Number of results you would like (numeric). Default is 10
-#' @param tick_color Font color, name or hex, for display names (string). Default is black
+#' @param tick_color Font color, name or hex, for display names (string).
 #' @param title Plot title - default is "Trending Adds/Drops" (string).
+#' @param drop_fill Bar color, name or hex, for drops (string).
+#' @param add_fill Bar color, name or hex, for adds (string).
 #'
 plot_trending_players <- function(lookback_hours = 24,
                                   limit = 10,
                                   tick_color = "black",
-                                  title = "Trending Adds/Drops") {
+                                  title = "Trending Adds/Drops",
+                                  drop_fill = "#f68383",
+                                  add_fill = "lightgreen") {
   # Verify that tick color and title are strings
-  if (class(tick_color) != "character" || class(title) != "character") {
-    stop("Title and tick color must be strings.")
+  if (class(tick_color) != "character" || class(title) != "character" || class(drop_fill) != "character" || class(add_fill) != "character") { # nolint
+    stop("Title, tick color, drop fill, and add fill must be strings.")
   }
   # Get trending additions
   add_df <- get_trending_players(sport = "nfl",
@@ -67,7 +71,7 @@ plot_trending_players <- function(lookback_hours = 24,
                               text = ~scales::comma(count),
                               textposition = "auto",
                               type = "bar",
-                              marker = list(color = "rgb(144, 238, 144)",
+                              marker = list(color = add_fill,
                                             line = list(color = "rgb(0 ,0, 0)",
                                                         width = 1.5)),
                               name = "Adds")
@@ -84,7 +88,7 @@ plot_trending_players <- function(lookback_hours = 24,
                                text = ~scales::comma(count),
                                textposition = "auto",
                                type = "bar",
-                               marker = list(color = "#f68383",
+                               marker = list(color = drop_fill,
                                              line = list(color = "rgb(0 ,0, 0)",
                                                          width = 1.5)),
                                name = "Drops")

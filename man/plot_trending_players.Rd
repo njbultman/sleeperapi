@@ -8,7 +8,9 @@ plot_trending_players(
   lookback_hours = 24,
   limit = 10,
   tick_color = "black",
-  title = "Trending Adds/Drops"
+  title = "Trending Adds/Drops",
+  drop_fill = "#f68383",
+  add_fill = "lightgreen"
 )
 }
 \arguments{
@@ -16,9 +18,13 @@ plot_trending_players(
 
 \item{limit}{Number of results you would like (numeric). Default is 10}
 
-\item{tick_color}{Font color, name or hex, for display names (string). Default is black}
+\item{tick_color}{Font color, name or hex, for display names (string).}
 
 \item{title}{Plot title - default is "Trending Adds/Drops" (string).}
+
+\item{drop_fill}{Bar color, name or hex, for drops (string).}
+
+\item{add_fill}{Bar color, name or hex, for adds (string).}
 }
 \value{
 Returns a plot containing information (name and

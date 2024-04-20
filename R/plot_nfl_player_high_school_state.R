@@ -1,8 +1,8 @@
 #' Plot NFL Player High School State Information
 #'
 #' This function will generate a plot showing counts of NFL
-#' players by high school state. More color means more NFL players
-#' are from that state.
+#' players by high school state. Colors can be manually defined
+#' for high and low values of each state's count.
 #'
 #' @return Returns a plot containing information about counts
 #'         for NFL players by their high school state.
@@ -16,12 +16,16 @@
 #' \dontrun{plot_nfl_player_high_school_state()}
 #' \dontrun{plot_nfl_player_high_school_state(title = "Test")}
 #'
-#' @param title Title for plot. Default is "NFL Players by High School State" (string).
+#' @param title Title for plot (string).
+#' @param high_fill Fill color, name or hex, for high value states (string).
+#' @param low_fill Fill color, name or hex, for low value states (string).
 #'
-plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High School State</b>") {
+plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High School State</b>",
+                                              high_fill = "lightgreen",
+                                              low_fill = "white") {
   # Check if font_color argument is a string (throw error if not)
-  if (class(title) != "character") {
-    stop("Title argument must be a string.")
+  if (class(title) != "character" || class(high_fill) != "character" || class(low_fill) != "character") { # nolint
+    stop("Title, high fill, and low fill arguments must be strings.")
   }
   # Check if player data exists in temporary directory
   if (file.exists(paste0(tempdir(), "/nfl_data.RDS"))) {
@@ -50,12 +54,16 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
   player_data_count <- dplyr::count(player_data, high_school_state) # nolint
   # Generate base plot
   fig <- plotly::plot_geo(player_data_count, locationmode = "USA-states")
+
+  # Define continuous color scale
+  color_scale <- c(low_fill, high_fill)
+
   # Add trace for counts of high school states
   fig_2 <- plotly::add_trace(fig,
                              z = ~n,
                              locations = ~high_school_state,
                              color = ~n,
-                             colors = "Greens")
+                             colors = color_scale)
   # Refine layout
   fig_3 <- plotly::layout(fig_2,
                           title = title,

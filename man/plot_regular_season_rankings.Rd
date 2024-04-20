@@ -7,7 +7,9 @@
 plot_regular_season_rankings(
   league_id,
   title = "<b>Regular Season Rankings</b>",
-  tick_color = "black"
+  tick_color = "black",
+  rank_high_fill = "lightgreen",
+  rank_low_fill = "#f68383"
 )
 }
 \arguments{
@@ -16,6 +18,10 @@ plot_regular_season_rankings(
 \item{title}{Title for plot, which can include HTML formatting (string).}
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
+
+\item{rank_high_fill}{Bar color, name or hex, for highest rank (string).}
+
+\item{rank_low_fill}{Bar color, name or hex, for lowest rank (string).}
 }
 \value{
 Returns a plot containing the regular season league rankings.
