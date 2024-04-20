@@ -25,7 +25,7 @@ plot_user_waiver_budget <- function(league_id,
                                     title = "<b> Waiver Budget</b>", # nolint
                                     tick_color = "black",
                                     budget_total_line_color = "black",
-                                    fill_color = "green") {
+                                    fill_color = "lightgreen") {
   # Check to see if title, display_name, tick_color, and budget line color are strings
   if (!is.character(title) || !is.character(display_name) || !is.character(tick_color) || !is.character(budget_total_line_color) || !is.character(fill_color)) { # nolint
     # Error and inform user if all are not strings
