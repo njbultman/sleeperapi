@@ -11,7 +11,6 @@
 #' @export
 #' @examples
 #' \dontrun{plot_user_waiver_budget(688281863499907072, "njbultman74")}
-#' \dontrun{plot_user_waiver_budget(688281863499907072, "datcommish", title = "Test")}
 #'
 #' @param league_id League ID assigned by Sleeper (numeric).
 #' @param display_name Display name created by user (string).

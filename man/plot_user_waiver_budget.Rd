@@ -10,7 +10,7 @@ plot_user_waiver_budget(
   title = "<b> Waiver Budget</b>",
   tick_color = "black",
   budget_total_line_color = "black",
-  fill_color = "green"
+  fill_color = "lightgreen"
 )
 }
 \arguments{
@@ -36,7 +36,6 @@ the user has remaining).
 }
 \examples{
 \dontrun{plot_user_waiver_budget(688281863499907072, "njbultman74")}
-\dontrun{plot_user_waiver_budget(688281863499907072, "datcommish", title = "Test")}
 
 }
 \author{
