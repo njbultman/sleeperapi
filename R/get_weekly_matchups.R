@@ -13,6 +13,7 @@
 #' @keywords matchups league
 #' @importFrom dplyr left_join across mutate
 #' @importFrom tidyr separate_longer_delim
+#' @importFrom stringr str_replace_all
 #' @export
 #' @examples
 #' \dontrun{get_weekly_matchups(688281863499907072)}
