@@ -75,22 +75,35 @@ get_weekly_matchups <- function(league_id, type = "all") {
   master_matchup_df_join_filter_distinct$tot_points.x <- master_matchup_df_join_filter_distinct$points.x + master_matchup_df_join_filter_distinct$custom_points.x # nolint
   master_matchup_df_join_filter_distinct$custom_points.y[is.na(master_matchup_df_join_filter_distinct$custom_points.y)] <- 0 # nolint
   master_matchup_df_join_filter_distinct$tot_points.y <- master_matchup_df_join_filter_distinct$points.y + master_matchup_df_join_filter_distinct$custom_points.y # nolint
+  # Get wins/losses
+  master_matchup_df_join_filter_distinct$win_loss.x <- ifelse(master_matchup_df_join_filter_distinct$tot_points.x > master_matchup_df_join_filter_distinct$tot_points.y, # nolint
+                                                              "W",
+                                                              ifelse(master_matchup_df_join_filter_distinct$tot_points.x < master_matchup_df_join_filter_distinct$tot_points.y, # nolint
+                                                                     "L",
+                                                                     "T"))
+  master_matchup_df_join_filter_distinct$win_loss.y <- ifelse(master_matchup_df_join_filter_distinct$tot_points.y > master_matchup_df_join_filter_distinct$tot_points.x, # nolint
+                                                              "W",
+                                                              ifelse(master_matchup_df_join_filter_distinct$tot_points.y < master_matchup_df_join_filter_distinct$tot_points.x, # nolint
+                                                                     "L",
+                                                                     "T"))
   # Split data into team information and team/player information
   team_df <- master_matchup_df_join_filter_distinct[, c("week", "matchup_id","roster_id.x", "roster_id.y", # nolint
                                                        "team_name.x", "team_name.y","points.x", "points.y", # nolint
                                                        "custom_points.x", "custom_points.y", "tot_points.x", # nolint
-                                                       "tot_points.y")] # nolint
+                                                       "tot_points.y", "win_loss.x", "win_loss.y")] # nolint
   player_df <- master_matchup_df_join_filter_distinct[, c("week", "matchup_id", "roster_id.x", "roster_id.y", # nolint
                                                           "team_name.x", "team_name.y", "custom_points.x", # nolint
                                                           "custom_points.y", "tot_points.x", "tot_points.y", # nolint
                                                           "starters.x", "starters.y", "starters_points.x", # nolint
-                                                          "starters_points.y")] # nolint
+                                                          "starters_points.y", "win_loss.x", "win_loss.y")] # nolint
   # Rename custom/total point columns to reflect they are team level
   player_df <- dplyr::rename(player_df,
                              "custom_team_points.x" = "custom_points.x",
                              "custom_team_points.y" = "custom_points.y",
                              "tot_team_points.x" = "tot_points.x",
-                             "tot_team_points.y" = "tot_points.y")
+                             "tot_team_points.y" = "tot_points.y",
+                             "team_win_loss.x" = "win_loss.x",
+                             "team_win_loss.y" = "win_loss.y")
 
   # Separate embedded lists into multiple records
   player_df_long <- suppressWarnings(tidyr::separate_longer_delim(player_df,
