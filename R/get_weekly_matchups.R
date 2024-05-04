@@ -86,13 +86,17 @@ get_weekly_matchups <- function(league_id, type = "all") {
                                                               ifelse(master_matchup_df_join_filter_distinct$tot_points.y < master_matchup_df_join_filter_distinct$tot_points.x, # nolint
                                                                      "L",
                                                                      "T"))
+  # Reset index
+  rownames(master_matchup_df_join_filter_distinct) <- 1:nrow(master_matchup_df_join_filter_distinct) # nolint
   # Split data into team information and team/player information
   team_df <- master_matchup_df_join_filter_distinct[, c("week", "matchup_id","roster_id.x", "roster_id.y", # nolint
-                                                       "team_name.x", "team_name.y","points.x", "points.y", # nolint
+                                                       "display_name.x", "display_name.y", "team_name.x",  # nolint
+                                                       "team_name.y","points.x", "points.y", # nolint
                                                        "custom_points.x", "custom_points.y", "tot_points.x", # nolint
                                                        "tot_points.y", "win_loss.x", "win_loss.y")] # nolint
   player_df <- master_matchup_df_join_filter_distinct[, c("week", "matchup_id", "roster_id.x", "roster_id.y", # nolint
-                                                          "team_name.x", "team_name.y", "custom_points.x", # nolint
+                                                          "display_name.x", "display_name.y", "team_name.x",  # nolint
+                                                          "team_name.y", "custom_points.x", # nolint
                                                           "custom_points.y", "tot_points.x", "tot_points.y", # nolint
                                                           "starters.x", "starters.y", "starters_points.x", # nolint
                                                           "starters_points.y", "win_loss.x", "win_loss.y")] # nolint
@@ -156,6 +160,13 @@ get_weekly_matchups <- function(league_id, type = "all") {
   player_df_long_full <- dplyr::left_join(player_df_long_full,
                                           player_info_df_slice,
                                           by = c("starters.y" = "player_id"))
+  # If player name is NA, grab the ID (normally DEF)
+  player_df_long_full$full_name.x <- ifelse(is.na(player_df_long_full$full_name.x), # nolint
+                                            player_df_long_full$starters.x,
+                                            player_df_long_full$full_name.x)
+  player_df_long_full$full_name.y <- ifelse(is.na(player_df_long_full$full_name.y), # nolint
+                                            player_df_long_full$starters.y,
+                                            player_df_long_full$full_name.y)
   # Given user selection, return appropriate data
   if (type == "all") {
     # If "all" then return a list with both data frames
@@ -164,8 +175,8 @@ get_weekly_matchups <- function(league_id, type = "all") {
   } else if (type == "team") {
     # If "team" return the team data frame
     return(team_df)
-  } else {
+  } else if (type == "player") {
     # Otherwise, return the player data frame
-    return(player_df_long)
+    return(player_df_long_full)
   }
 }

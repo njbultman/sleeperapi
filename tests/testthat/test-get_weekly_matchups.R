@@ -8,7 +8,7 @@ test_that("verify that invalid data type throws an error", {
 # Test 2: Bad league ID throws an error
 test_that("bad league ID throws an error", {
   expect_error(get_weekly_matchups(-777),
-               'No matchup data present for this league ID.')
+               "No matchup data present for this league ID.")
 })
 # Test 3: Good function call with "all" type returns list
 test_that("good function call with 'all' type returns list", {
