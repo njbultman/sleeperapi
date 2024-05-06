@@ -77,6 +77,7 @@ plot_user_weekly_players <- function(league_id,
                                            tickfont = list(color = tick_color)),
                               xaxis = list(title = "",
                                            tickfont = list(color = tick_color)),
+                              legend = list(font = list(color = tick_color)),
                               plot_bgcolor  = "rgba(0, 0, 0, 0)",
                               paper_bgcolor = "rgba(0, 0, 0, 0)")
     # Return figure

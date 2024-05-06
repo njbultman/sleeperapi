@@ -142,6 +142,26 @@ plot_league_dashboard <- function(league_id) {
         # Create a fluid row to hold the labels for team analysis plots
         shiny::fluidRow(
           shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Matchups by Week</b>")), align = "center", style = "color:white") # nolint
+          ),
+          shiny::column(width = 6,
+                        shiny::h2(htmltools::HTML(paste0("<b>Player Points by Week</b>")), align = "center", style = "color:white") # nolint
+          )
+        ),
+        # Create a fluid row to hold team analysis plots
+        shiny::fluidRow(
+          # Display fantasy points differential plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_weekly_matchups_plot")) # nolint  
+          ),
+          # Display user waiver budget plot
+          shiny::column(width = 6,
+                        shinycssloaders::withSpinner(plotly::plotlyOutput(outputId = "user_weekly_players_plot")) # nolint  
+          )
+        ),
+        # Create a fluid row to hold the labels for team analysis plots
+        shiny::fluidRow(
+          shiny::column(width = 6,
                         shiny::h2(htmltools::HTML(paste0("<b>Fantasy Points Differential</b>")), align = "center", style = "color:white") # nolint
           ),
           shiny::column(width = 6,
@@ -288,6 +308,20 @@ plot_league_dashboard <- function(league_id) {
                                        display_name = input$displaynameselection, # nolint
                                        title = "",
                                        tick_color = "#fff")
+    })
+    # Render user weekly matchups plot
+    output$user_weekly_matchups_plot <- plotly::renderPlotly({
+      plot_user_weekly_matchups(league_id,
+                                display_name = input$displaynameselection, # nolint
+                                title = "",
+                                tick_color = "#fff")
+    })
+    # Render user weekly player points plot
+    output$user_weekly_players_plot <- plotly::renderPlotly({
+      plot_user_weekly_players(league_id,
+                                display_name = input$displaynameselection, # nolint
+                                title = "",
+                                tick_color = "#fff")
     })
     # Render league information table
     output$league_information_table <- DT::renderDataTable({
