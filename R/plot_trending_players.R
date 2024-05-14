@@ -5,7 +5,7 @@
 #' title, display a figure showing the top NFL additions and drops.
 #'
 #' @return Returns a plot containing information (name and
-#'         count) about the NFL trending players.
+#'         count) about the trending players.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2023
 #' @keywords players trending
 #' @importFrom dplyr left_join
@@ -17,8 +17,8 @@
 #' \dontrun{plot_trending_players(lookback_hours = 24, limit = 10)}
 #' \dontrun{plot_trending_players(lookback_hours = 24, limit = 10, tick_color = "white")}
 #'
-#' @param lookback_hours Number of hours to look back (numeric). Default is 24
-#' @param limit Number of results you would like (numeric). Default is 10
+#' @param lookback_hours Number of hours to look back (numeric).
+#' @param limit Number of results you would like (numeric).
 #' @param tick_color Font color, name or hex, for display names (string).
 #' @param title Plot title - default is "Trending Adds/Drops" (string).
 #' @param drop_fill Bar color, name or hex, for drops (string).

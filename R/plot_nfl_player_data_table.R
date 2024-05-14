@@ -4,8 +4,7 @@
 #' information (name, age, college, etc.) concerning all
 #' the NFL players that Sleeper has data on.
 #'
-#' @return Returns a plot containing information (name and
-#'         count) about the NFL trending players.
+#' @return Returns a table showing general NFL player information.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, March 2024
 #' @keywords players general
 #' @importFrom DT datatable
@@ -15,7 +14,7 @@
 #' \dontrun{plot_nfl_player_data_table()}
 #' \dontrun{plot_nfl_player_data_table(font_color = "green")}
 #'
-#' @param font_color Font color, name or hex. Default is "inherit" (string).
+#' @param font_color Font color, name or hex (string).
 #'
 plot_nfl_player_data_table <- function(font_color = "inherit") {
   # Check if font_color argument is a string (throw error if not)

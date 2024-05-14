@@ -15,7 +15,7 @@ plot_league_information_table(
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}
 
-\item{font_color}{Font color, hex code or name. Default is "inherit" (string).}
+\item{font_color}{Font color, hex code or name (string).}
 
 \item{win_loss_fill}{String describing the brewer.pal color palette selection. Can see all options through RColorBrewer::display.brewer.all() (string).}
 

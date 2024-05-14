@@ -7,11 +7,10 @@
 plot_nfl_player_data_table(font_color = "inherit")
 }
 \arguments{
-\item{font_color}{Font color, name or hex. Default is "inherit" (string).}
+\item{font_color}{Font color, name or hex (string).}
 }
 \value{
-Returns a plot containing information (name and
-        count) about the NFL trending players.
+Returns a table showing general NFL player information.
 }
 \description{
 This function will generate a table containing general

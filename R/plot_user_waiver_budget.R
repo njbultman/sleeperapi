@@ -16,7 +16,7 @@
 #' @param display_name Display name created by user (string).
 #' @param title Title for plot, which can include HTML formatting (string).
 #' @param tick_color Font color, name or hex, for display names (string).
-#' @param budget_total_line_color Font color, name or hex (string).
+#' @param budget_total_line_color Line color for max budget, name or hex (string).
 #' @param fill_color Fill color for bar, name or hex (string).
 #'
 plot_user_waiver_budget <- function(league_id,

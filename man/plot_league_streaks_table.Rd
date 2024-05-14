@@ -14,7 +14,7 @@ plot_league_streaks_table(
 \arguments{
 \item{league_id}{League ID generated from Sleeper (numeric).}
 
-\item{font_color}{Header font color, hex code or name. Default is "inherit" (string).}
+\item{font_color}{Header font color, hex code or name (string).}
 
 \item{win_streak_font_color}{Font color, hex code or name, for teams with winning streak (string).}
 
@@ -25,9 +25,7 @@ Returns a table containing display names and their streaks.
 }
 \description{
 Given the league ID, generate a table showing display names
-and their associated streaks (2W, 5L, etc.). Note that the font
-color for the streaks are currently at zero or greater = green
-and L = red. The font color argument is used for the headers.
+and their associated streaks (2W, 5L, etc.).
 }
 \examples{
 \dontrun{plot_league_streaks_table(688281863499907072)}

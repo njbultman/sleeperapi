@@ -14,9 +14,9 @@ plot_trending_players(
 )
 }
 \arguments{
-\item{lookback_hours}{Number of hours to look back (numeric). Default is 24}
+\item{lookback_hours}{Number of hours to look back (numeric).}
 
-\item{limit}{Number of results you would like (numeric). Default is 10}
+\item{limit}{Number of results you would like (numeric).}
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
 
@@ -28,7 +28,7 @@ plot_trending_players(
 }
 \value{
 Returns a plot containing information (name and
-        count) about the NFL trending players.
+        count) about the trending players.
 }
 \description{
 Given the number of hours to look back, a limit of

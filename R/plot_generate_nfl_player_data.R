@@ -4,14 +4,14 @@
 #' recommended to run this function before any plotting
 #' begins to ensure the latest player information is present
 #' with the package. Per Sleeper, gathering these data should
-#' only be done once per day, which is why is not recommended
-#' to implement a call to gather player information every time
+#' only be done once per day, which is why this is not recommended
+#' to implement a call every time to gather player information when
 #' a plot is generated. This function will refresh the latest
 #' NFL player information and place it in the appropriate place
 #' for the plotting functions to grab. Moreover, it will keep that
 #' information stored for the duration of the R session.
 #'
-#' @return Returns a message stating if the data refresh was successful or not
+#' @return Returns a message stating if the data refresh was successful or not.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, September 2023
 #' @keywords nfl players refresh data
 #' @export

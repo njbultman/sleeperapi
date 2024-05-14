@@ -22,7 +22,7 @@ plot_user_waiver_budget(
 
 \item{tick_color}{Font color, name or hex, for display names (string).}
 
-\item{budget_total_line_color}{Font color, name or hex (string).}
+\item{budget_total_line_color}{Line color for max budget, name or hex (string).}
 
 \item{fill_color}{Fill color for bar, name or hex (string).}
 }

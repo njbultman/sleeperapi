@@ -7,15 +7,15 @@
 plot_generate_nfl_player_data()
 }
 \value{
-Returns a message stating if the data refresh was successful or not
+Returns a message stating if the data refresh was successful or not.
 }
 \description{
 When using some of the plotting functions, it is
 recommended to run this function before any plotting
 begins to ensure the latest player information is present
 with the package. Per Sleeper, gathering these data should
-only be done once per day, which is why is not recommended
-to implement a call to gather player information every time
+only be done once per day, which is why this is not recommended
+to implement a call every time to gather player information when
 a plot is generated. This function will refresh the latest
 NFL player information and place it in the appropriate place
 for the plotting functions to grab. Moreover, it will keep that

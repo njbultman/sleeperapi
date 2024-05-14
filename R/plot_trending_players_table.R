@@ -18,9 +18,9 @@
 #' \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10)}
 #' \dontrun{plot_trending_players_table(lookback_hours = 24, limit = 10, font_color = "white")}
 #'
-#' @param lookback_hours Number of hours to look back. Default is 24 (numeric).
-#' @param limit Number of players returned for add/drop. Default is 10, max is 50 (numeric).
-#' @param font_color Font color, name or hex. Default is "inherit" (string).
+#' @param lookback_hours Number of hours to look back (numeric).
+#' @param limit Number of players returned for add/drop. Should be less than 50 (numeric).
+#' @param font_color Font color, name or hex (string).
 #' @param drop_fill Bar color, name or hex, for drops (string).
 #' @param add_fill Bar color, name or hex, for adds (string).
 #'

@@ -3,7 +3,8 @@
 #' Given the league ID and display name, plot the current total fantasy
 #' points for that user while also plotting the current total fantasy
 #' points for the rest of the league, with the specified user's bar
-#' colored in red.
+#' colored in a different color than the others (assuming the colors
+#' are not set to the same by the user).
 #'
 #' @return Returns a plot containing the total fantasy points for by user.
 #' @author Nick Bultman, \email{njbultman74@@gmail.com}, March 2024

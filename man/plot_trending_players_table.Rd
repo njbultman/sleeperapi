@@ -13,11 +13,11 @@ plot_trending_players_table(
 )
 }
 \arguments{
-\item{lookback_hours}{Number of hours to look back. Default is 24 (numeric).}
+\item{lookback_hours}{Number of hours to look back (numeric).}
 
-\item{limit}{Number of players returned for add/drop. Default is 10, max is 50 (numeric).}
+\item{limit}{Number of players returned for add/drop. Should be less than 50 (numeric).}
 
-\item{font_color}{Font color, name or hex. Default is "inherit" (string).}
+\item{font_color}{Font color, name or hex (string).}
 
 \item{drop_fill}{Bar color, name or hex, for drops (string).}
 
