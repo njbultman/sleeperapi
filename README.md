@@ -5,10 +5,10 @@
 ### *Installation*
 Install release version from CRAN:
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/sleeperapi)](ttps://cran.r-project.org/package=sleeperapi)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/sleeperapi)](https://cran.r-project.org/package=sleeperapi)
 [![downloads](https://cranlogs.r-pkg.org/badges/grand-total/sleeperapi)](https://www.r-pkg.org/services)
 [![R-CMD-check](https://github.com/njbultman/sleeperapi/workflows/R-CMD-check/badge.svg)](https://github.com/njbultman/sleeperapi/actions) 
-[![Codecov test coverage](https://codecov.io/gh/njbultman/sleeperapi/branch/main/graph/badge.svg)](https://codecov.io/gh/njbultman/sleeperapi?branch=main)
+[![Codecov test coverage](https://codecov.io/gh/njbultman/sleeperapi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njbultman/sleeperapi?branch=main)
 
 ```R
 install.packages("sleeperapi")
@@ -24,7 +24,7 @@ devtools::install_github("njbultman/sleeperapi")
 ```
 
 ### *Background*
-Sleeper offers a free, non-authenticated read-only HTTP API for users to gather information from their platform. Their API [documentation](https://docs.sleeper.app/) goes into basic GET requests using terminal commands, but those wishing to use R might want a simpler way to gather the data they would like to analyze should they be unfamiliar with how to go about this in R. 
+Sleeper offers a free, non-authenticated read-only HTTP API for users to gather information from their platform. Their API [documentation](https://docs.sleeper.com/) goes into basic GET requests using terminal commands, but those wishing to use R might want a simpler way to gather the data they would like to analyze should they be unfamiliar with how to go about this in R. 
 
 This package attempts to solve this issue through various functions that gather data from Sleeper's API into lists and data frames (well known objects for R users) just by knowing basics like league or user IDs. Additionally, this package offers plotting functions (including an interactive dashboard function through R's Shiny package), allowing insights to be gathered quicker.
 

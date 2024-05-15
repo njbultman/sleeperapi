@@ -7,7 +7,7 @@ Authors@R:
              family = "Bultman",
              role = c("aut", "cre", "cph"),
              email = "njbultman74@gmail.com"))
-Description: For those wishing to interact with the 'Sleeper' (Fantasy Sports) API (<https://api.sleeper.app/>) without looking too much into its documentation (found at <https://docs.sleeper.app/>), this package offers wrapper functions around the available API calls to make it easier.
+Description: For those wishing to interact with the 'Sleeper' (Fantasy Sports) API (<https://docs.sleeper.com/>) without looking too much into its documentation (found at <https://docs.sleeper.com/>), this package offers wrapper functions around the available API calls to make it easier.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.3.1

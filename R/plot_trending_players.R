@@ -31,7 +31,7 @@ plot_trending_players <- function(lookback_hours = 24,
                                   drop_fill = "#f68383",
                                   add_fill = "lightgreen") {
   # Verify that tick color and title are strings
-  if (class(tick_color) != "character" || class(title) != "character" || class(drop_fill) != "character" || class(add_fill) != "character") { # nolint
+  if (!is.character(tick_color) || !is.character(title) || !is.character(drop_fill) || !is.character(add_fill)) { # nolint
     stop("Title, tick color, drop fill, and add fill must be strings.")
   }
   # Get trending additions

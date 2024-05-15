@@ -12,7 +12,6 @@
 #' @export
 #' @examples
 #' \dontrun{plot_user_fantasy_points_against(688281863499907072, "njbultman74")}
-#' \dontrun{plot_user_fantasy_points_against(688281863499907072, "datcommish", title = "test", tick_color = "green")}
 #'
 #' @param league_id League ID assigned by Sleeper (numeric).
 #' @param display_name Display name created by user (string).

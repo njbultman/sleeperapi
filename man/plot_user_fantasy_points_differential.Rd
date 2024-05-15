@@ -37,7 +37,6 @@ bar chart.
 }
 \examples{
 \dontrun{plot_user_fantasy_points_differential(688281863499907072, "njbultman74")}
-\dontrun{plot_user_fantasy_points_differential(688281863499907072, "datcommish", title = "test", tick_color = "green")}
 
 }
 \author{

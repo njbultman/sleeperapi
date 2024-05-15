@@ -26,11 +26,11 @@ plot_nfl_top_colleges <- function(title = "<b>NFL Players by College</b>", # nol
                                   number = 10,
                                   fill_color = "black") {
   # Check if title, fill_color and tick_color arguments are strings (throw error if not) # nolint
-  if (class(title) != "character" || class(tick_color) != "character" || class(fill_color) != "character") { # nolint
+  if (!is.character(title) || !is.character(tick_color) || !is.character(fill_color)) { # nolint
     stop("Title, tick color, and fill color arguments must be strings.")
   }
   # Check if number argument is numeric (throw error if not)
-  if (class(number) != "numeric") {
+  if (!is.numeric(number)) {
     stop("Number argument must be numeric.")
   }
   # Check if player data exists in temporary directory
@@ -44,11 +44,11 @@ plot_nfl_top_colleges <- function(title = "<b>NFL Players by College</b>", # nol
     player_data <- readRDS(paste0(tempdir(), "/nfl_data.RDS"))
   }
   # Filter for only players that have a non-null college
-  player_data_filter <- tidyr::drop_na(player_data, college) # nolint
+  player_data_filter <- tidyr::drop_na(player_data, .data$college) # nolint
   # Count the number of records per college
-  player_data_count <- dplyr::count(player_data_filter, college) # nolint
+  player_data_count <- dplyr::count(player_data_filter, .data$college) # nolint
   # Get the top records by count as specified by the user
-  player_data_top <- dplyr::top_n(player_data_count, n = number, wt = n) # nolint
+  player_data_top <- dplyr::top_n(player_data_count, n = number, wt = .data$n) # nolint
   # Generate base plot
   fig <- plotly::plot_ly(data = player_data_top,
                          x = ~college,

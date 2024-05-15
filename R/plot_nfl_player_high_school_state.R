@@ -24,7 +24,7 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
                                               high_fill = "lightgreen",
                                               low_fill = "white") {
   # Check if font_color argument is a string (throw error if not)
-  if (class(title) != "character" || class(high_fill) != "character" || class(low_fill) != "character") { # nolint
+  if (!is.character(title) || !is.character(high_fill) || !is.character(low_fill)) { # nolint
     stop("Title, high fill, and low fill arguments must be strings.")
   }
   # Check if player data exists in temporary directory
@@ -51,7 +51,7 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
   player_data$high_school_state <- ifelse(nchar(player_data$high_school_state) > 2, # nolint
                                           NA,
                                           player_data$high_school_state)
-  player_data_count <- dplyr::count(player_data, high_school_state) # nolint
+  player_data_count <- dplyr::count(player_data, .data$high_school_state) # nolint
   # Generate base plot
   fig <- plotly::plot_geo(player_data_count, locationmode = "USA-states")
 

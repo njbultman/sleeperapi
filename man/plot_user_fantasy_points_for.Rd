@@ -38,7 +38,6 @@ are not set to the same by the user).
 }
 \examples{
 \dontrun{plot_user_fantasy_points_for(688281863499907072, "njbultman74")}
-\dontrun{plot_user_fantasy_points_for(688281863499907072, "datcommish", title = "test", tick_color = "green")}
 
 }
 \author{

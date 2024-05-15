@@ -35,7 +35,7 @@ plot_trending_players_table <- function(lookback_hours = 24,
     stop("Limit should be less than or equal to 50")
   }
   # Test font_color, drop_fill and add_fill types (error if not string)
-  if (class(font_color) != "character" || class(drop_fill) != "character" || class(add_fill) != "character") { # nolint
+  if (!is.character(font_color)|| !is.character(drop_fill) || !is.character(add_fill)) { # nolint
     stop("Font color, drop fill, and add fill arguments must be strings")
   }
   # Get trending additions

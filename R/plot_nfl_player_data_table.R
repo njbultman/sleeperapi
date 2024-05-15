@@ -18,7 +18,7 @@
 #'
 plot_nfl_player_data_table <- function(font_color = "inherit") {
   # Check if font_color argument is a string (throw error if not)
-  if (class(font_color) != "character") {
+  if (!is.character(font_color)) {
     stop("Font color argument must be a string.")
   }
   # Check if player data exists in temporary directory
