@@ -52,7 +52,7 @@ plot_nfl_player_high_school_state <- function(title = "<b>NFL Players by High Sc
   player_data$high_school_state <- ifelse(nchar(player_data$high_school_state) > 2, # nolint
                                           NA,
                                           player_data$high_school_state)
-  player_data_count <- dplyr::count(player_data, rlang::.data$high_school_state) # nolint
+  player_data_count <- dplyr::count(player_data, .data$high_school_state) # nolint
   # Generate base plot
   fig <- plotly::plot_geo(player_data_count, locationmode = "USA-states")
 

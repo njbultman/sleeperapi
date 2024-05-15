@@ -59,7 +59,7 @@ plot_user_weekly_players <- function(league_id,
     # Add X-axis label for plot
     owner_df$label <- paste0("Week ", owner_df$week)
     # Get total points by player
-    tot_player_points <- dplyr::summarize(dplyr::group_by(owner_df, rlang::.data$full_name), tot_player_points = sum(rlang::.data$starters_points)) # nolint
+    tot_player_points <- dplyr::summarize(dplyr::group_by(owner_df, .data$full_name), tot_player_points = sum(.data$starters_points)) # nolint
     owner_df <- dplyr::left_join(owner_df, tot_player_points, by = "full_name")
     # Get color palette
     color_palette <- colorRampPalette(RColorBrewer::brewer.pal(11, "Spectral"))(max(owner_df$week)) # nolint
