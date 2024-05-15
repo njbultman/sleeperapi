@@ -11,6 +11,7 @@
 #' @importFrom plotly plot_ly layout
 #' @importFrom tidyr drop_na
 #' @importFrom dplyr count top_n
+#' @importFrom rlang .data
 #' @export
 #' @examples
 #' \dontrun{plot_nfl_player_college()}
@@ -44,11 +45,11 @@ plot_nfl_top_colleges <- function(title = "<b>NFL Players by College</b>", # nol
     player_data <- readRDS(paste0(tempdir(), "/nfl_data.RDS"))
   }
   # Filter for only players that have a non-null college
-  player_data_filter <- tidyr::drop_na(player_data, .data$college) # nolint
+  player_data_filter <- tidyr::drop_na(player_data, rlang::.data$college) # nolint
   # Count the number of records per college
-  player_data_count <- dplyr::count(player_data_filter, .data$college) # nolint
+  player_data_count <- dplyr::count(player_data_filter, rlang::.data$college) # nolint
   # Get the top records by count as specified by the user
-  player_data_top <- dplyr::top_n(player_data_count, n = number, wt = .data$n) # nolint
+  player_data_top <- dplyr::top_n(player_data_count, n = number, wt = rlang::.data$n) # nolint
   # Generate base plot
   fig <- plotly::plot_ly(data = player_data_top,
                          x = ~college,

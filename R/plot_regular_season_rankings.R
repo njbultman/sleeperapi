@@ -11,6 +11,7 @@
 #' @importFrom plotly plot_ly layout
 #' @importFrom stats reorder
 #' @importFrom dplyr arrange
+#' @importFrom rlang .data
 #' @export
 #' @examples
 #' \dontrun{plot_regular_season_rankings(688281863499907072)}
@@ -37,7 +38,7 @@ plot_regular_season_rankings <- function(league_id,
     # If nothing is returned for master data frame, return nothing
     # A message already informs user of error in get_main_data function
     # Order data frame by rank_pts
-    master_df_sort <- dplyr::arrange(master_df, .data$rank_fpts) # nolint
+    master_df_sort <- dplyr::arrange(master_df, rlang::.data$rank_fpts) # nolint
     # Generate colors for plot
     colors_rank <- colorRampPalette(c(rank_high_fill, rank_low_fill))
     # Generate base plot
