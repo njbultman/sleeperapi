@@ -21,22 +21,22 @@
 #' @examples
 #' \dontrun{get_all_nfl_players(clean = FALSE)}
 #' \dontrun{get_all_nfl_players(clean = TRUE)}
-#' 
+#'
 #' @param clean Specifies whether a data frame or the default list will be returned (logical)
 #'
 get_all_nfl_players <- function(clean = FALSE) {
   # Check if clean parameter is logical
-  if(!is.logical(clean)) {
+  if (!is.logical(clean)) {
     # If not logical, inform user and halt the function
     stop("Parameter 'clean' must be logical (TRUE or FALSE)")
   }
   # Send request to API
   x <- jsonlite::fromJSON(httr::content(httr::GET(paste0("https://api.sleeper.app/v1/players/nfl")), as = "text"))
   # Check if parameter 'clean' is FALSE. If so, return default list
-  if(clean == FALSE) {
+  if (clean == FALSE) {
     return(x)
   # If parameter 'clean' is TRUE, go through cleaning process to prepare data frame
-  } else if(clean == TRUE) {
+  } else if (clean == TRUE) {
     # Find unique lengths of lists within list and sort in descending order
     dist_lengths <- sort(unique(sapply(x, length)), decreasing = TRUE)
     # Convert all NULLs to NA (for preservation when using the unlist function later)
@@ -44,11 +44,25 @@ get_all_nfl_players <- function(clean = FALSE) {
     # Instantiate master data frame
     df_master <- data.frame()
     # Loop through differing list lengths
-    for(i in dist_lengths) {
+    for (i in dist_lengths) {
       # Obtain matrix of specific lists by length and append all records together
       x_mat <- do.call(rbind, Filter(function(x) length(x) == i, x_null_to_na))
-      # Unlist matrix to obtain data frame - keep strings as they are (no factors)
-      df_temp <- data.frame(apply(x_mat, MARGIN = 2, unlist, use.names = FALSE), stringsAsFactors = FALSE)
+      # Unlist matrix to obtain list
+      list_temp <- apply(x_mat, MARGIN = 2, FUN = unlist, use.names = FALSE)
+      # Check for NULL list objects
+      test <- try(unlist(apply(list_temp, MARGIN = 2, FUN = is.null)),
+                  silent = TRUE)
+      if (inherits(test, "try-error")) {
+        # Filter list and remove objects where only NULL
+        list_temp <- Filter(Negate(is.null), list_temp)
+      }
+      # Convert list to data frame, keep strings as is (no factors)
+      df_temp <- data.frame(list_temp, stringsAsFactors = FALSE)
+      # Check if "active" column is in data frame
+      if (any(names(df_temp) == "active")) {
+        # Ensure "active" column is a character vector
+        df_temp$active <- as.character(df_temp$active)
+      }
       # Bind rows to master data frame
       df_master <- dplyr::bind_rows(df_master, df_temp)
     }
