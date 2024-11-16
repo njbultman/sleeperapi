@@ -28,8 +28,11 @@ get_main_data <- function(league_id) {
     league_user_data <- get_league_users(league_id)
     # Remove league ID from league user data (already present in roster data)
     league_user_data$league_id <- NULL
-    # Rename avatar column (naming convention present in other data)
-    league_data <- dplyr::rename(league_data, "avatar_league" = "avatar")
+    # Check if avatar column is present in league data
+    if (any(names(league_data) == "avatar")) {
+      # If TRUE, rename (naming convention present in other data)
+      league_data <- dplyr::rename(league_data, "avatar_league" = "avatar")
+    }
     # Join roster data to league user data
     master_df_pre <- dplyr::left_join(roster_data,
                                       league_user_data,
