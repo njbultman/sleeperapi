@@ -1,7 +1,7 @@
 Package: sleeperapi
 Type: Package
 Title: Wrapper Functions Around 'Sleeper' (Fantasy Sports) API
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: 
     c(person(given = "Nick",
              family = "Bultman",
